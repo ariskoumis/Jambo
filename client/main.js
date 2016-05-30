@@ -6,6 +6,7 @@ import './main.html';
 
 if (Meteor.isClient) {
 
+    //Menu
     Template.menu.events({
         "click #menuHome": function() {
             Session.set('displayHome', true);
@@ -16,6 +17,7 @@ if (Meteor.isClient) {
         },
     });
 
+    //Page
     Template.page.onRendered(function() {
         Session.set("displayHome", true)
     });
@@ -39,5 +41,12 @@ if (Meteor.isClient) {
             return Session.get("displayHome");
         },
     });
+
+    //Form
+    Template.form.events({
+        "blur #username": function() {
+            console.log($('#username').val())
+        }
+    })
 
 }
