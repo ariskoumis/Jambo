@@ -1,0 +1,81 @@
+<head>
+  <title>Jambo</title>
+</head>
+
+<body>
+  <div class= "ui container">
+    {{> menu}}
+    {{> page}}
+  </div>
+</body>
+
+<template name="form">
+  <div class="ui container center">
+    <h1>Create Profile</h1>
+      <div class="ui input">
+        <input class= "fuck" id="name" type="text" placeholder="Your Name">
+      </div>
+      <br>
+      <div class="ui input">
+        <input id="username" type="text" placeholder="Username">
+      </div>
+      <br>
+      <div class="ui input">
+        <input id="email" type="text" placeholder="Email Address">
+      </div>
+      <br>
+      <div class="ui input">
+        <input id="pass" type="text" placeholder="Choose a Password">
+      </div>
+      <br>
+      <div class="ui input">
+        <input id="passConfirm" type="text" placeholder="Confirm Password">
+      </div>
+      <br>
+    <div class="ui animated button" tabindex="0">
+      <div class="visible content">Submit</div>
+      <div class="hidden content">
+        <i class="right arrow icon"></i>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="menu">
+  <div class="ui attached menu">
+    <div class="ui container">
+      <a class="item">
+        <i class="home icon"></i> Home
+      </a>
+      <a class="item">
+        <i class="grid layout icon"></i> Browse
+      </a>
+      <a class="item">
+        <i class="mail icon"></i> Messages
+      </a>
+      <div class="ui simple dropdown item">
+        More
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <a class="item"><i class="edit icon"></i> Edit Profile</a>
+          <a class="item"><i class="globe icon"></i> Choose Language</a>
+          <a class="item"><i class="settings icon"></i> Account Settings</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+</template>
+
+<template name="home">
+    <button id="createProfile" class="fluid ui button">Create Profile</button>
+    <button id="inbox" class="fluid ui button">Inbox</button>
+</template>
+
+<template name="page">
+  {{#if displayHome}}
+    {{> home}}
+  {{else}}
+    {{currentPage}}
+  {{/if}}
+</template>
