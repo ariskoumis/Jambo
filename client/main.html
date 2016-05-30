@@ -9,6 +9,45 @@
   </div>
 </body>
 
+<template name="page">
+  {{#if displayHome}}
+    {{> home}}
+  {{else}}
+    {{> Template.dynamic template=getCurrentPage}}
+  {{/if}}
+</template>
+
+<template name="home">
+    <button id="createProfile" class="fluid ui button">Create Profile</button>
+    <button id="inbox" class="fluid ui button">Inbox</button>
+</template>
+
+<template name="menu">
+  <div class="ui attached menu">
+    <div class="ui container">
+      <a id= "menuHome" class="item">
+        <i class="home icon"></i> Home
+      </a>
+      <a id="menuInbox" class="item">
+        <i class="mail icon"></i> Messages
+      </a>
+      <a class="item">
+        <i class="grid layout icon"></i> Browse
+      </a>
+      <div class="ui simple dropdown item">
+        More
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <a class="item"><i class="edit icon"></i> Edit Profile</a>
+          <a class="item"><i class="globe icon"></i> Choose Language</a>
+          <a class="item"><i class="settings icon"></i> Account Settings</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+</template>
+
 <template name="form">
   <div class="ui container center">
     <h1>Create Profile</h1>
@@ -41,41 +80,6 @@
   </div>
 </template>
 
-<template name="menu">
-  <div class="ui attached menu">
-    <div class="ui container">
-      <a class="item">
-        <i class="home icon"></i> Home
-      </a>
-      <a class="item">
-        <i class="grid layout icon"></i> Browse
-      </a>
-      <a class="item">
-        <i class="mail icon"></i> Messages
-      </a>
-      <div class="ui simple dropdown item">
-        More
-        <i class="dropdown icon"></i>
-        <div class="menu">
-          <a class="item"><i class="edit icon"></i> Edit Profile</a>
-          <a class="item"><i class="globe icon"></i> Choose Language</a>
-          <a class="item"><i class="settings icon"></i> Account Settings</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <br>
-</template>
-
-<template name="home">
-    <button id="createProfile" class="fluid ui button">Create Profile</button>
-    <button id="inbox" class="fluid ui button">Inbox</button>
-</template>
-
-<template name="page">
-  {{#if displayHome}}
-    {{> home}}
-  {{else}}
-    {{currentPage}}
-  {{/if}}
+<template name='inbox'>
+  <p>Dis empty rn</p>
 </template>

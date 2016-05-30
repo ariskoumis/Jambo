@@ -6,14 +6,35 @@ import './main.html';
 
 if (Meteor.isClient) {
 
+    Template.menu.events({
+        "click #menuHome": function() {
+            Session.set('displayHome', true);
+        },
+        "click #menuInbox": function() {
+            Session.set('currentPage', "inbox");
+            Session.set('displayHome', false);
+        },
+    });
+
+    Template.page.onRendered(function() {
+        Session.set("displayHome", true)
+    });
+
     Template.page.events({
         "click #createProfile": function (event,template) {
+            Session.set('currentPage', "form");
             Session.set('displayHome', false)
-            Session.set('currentPage', "> form");
+        },
+        "click #inbox": function (event,template) {
+            Session.set('currentPage', "inbox");
+            Session.set('displayHome', false)
         }
     });
 
     Template.page.helpers({
+        getCurrentPage: function() {
+            return Session.get("currentPage");
+        },
         displayHome: function() {
             return Session.get("displayHome");
         },
