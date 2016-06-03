@@ -9,44 +9,29 @@ if (Meteor.isClient) {
     //Menu
     Template.menu.events({
         "click #menuHome": function() {
-            Session.set('displayHome', true);
+
         },
         "click #menuInbox": function() {
-            Session.set('currentPage', "inbox");
-            Session.set('displayHome', false);
+
         },
     });
 
     //Page
-    Template.page.onRendered(function() {
-        Session.set("displayHome", true)
+    Template.main.onRendered(function() {
+
     });
 
-    Template.page.events({
-        "click #createProfile": function (event,template) {
-            Session.set('currentPage', "form");
-            Session.set('displayHome', false)
-        },
-        "click #inbox": function (event,template) {
-            Session.set('currentPage', "inbox");
-            Session.set('displayHome', false)
-        }
+    Template.main.events({
+
     });
 
-    Template.page.helpers({
-        getCurrentPage: function() {
-            return Session.get("currentPage");
-        },
-        displayHome: function() {
-            return Session.get("displayHome");
-        },
+    Template.main.helpers({
+
     });
 
     //Form
-    Template.form.events({
-        "blur #username": function() {
-            console.log($('#username').val())
-        }
+    Template.editProfile.events({
+
     })
 
 }

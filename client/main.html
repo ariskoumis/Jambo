@@ -3,32 +3,28 @@
 </head>
 
 <body>
-  <div class= "ui container">
-    {{> menu}}
-    {{> page}}
-  </div>
 </body>
 
-<template name="page">
-  {{#if displayHome}}
-    {{> home}}
-  {{else}}
-    {{> Template.dynamic template=getCurrentPage}}
-  {{/if}}
+<template name="main">
+  <div class= "ui container">
+    {{> menu}}
+    {{> Template.dynamic template=currentPage}}
+  </div>
 </template>
 
+
 <template name="home">
-    <button id="createProfile" class="fluid ui button">Create Profile</button>
+    <a href="/editProfile" id="createProfile" class="fluid ui button">Create Profile</a>
     <button id="inbox" class="fluid ui button">Inbox</button>
 </template>
 
 <template name="menu">
   <div class="ui attached menu">
     <div class="ui container">
-      <a id= "menuHome" class="item">
+      <a href="/" id= "menuHome" class="item">
         <i class="home icon"></i> Home
       </a>
-      <a id="menuInbox" class="item">
+      <a href="/inbox" id="menuInbox" class="item">
         <i class="mail icon"></i> Messages
       </a>
       <a class="item">
@@ -38,7 +34,7 @@
         More
         <i class="dropdown icon"></i>
         <div class="menu">
-          <a class="item"><i class="edit icon"></i> Edit Profile</a>
+          <a href="editProfile" class="item"><i class="edit icon"></i> Edit Profile</a>
           <a class="item"><i class="globe icon"></i> Choose Language</a>
           <a class="item"><i class="settings icon"></i> Account Settings</a>
         </div>
@@ -48,33 +44,38 @@
   <br>
 </template>
 
-<template name="form">
-  <div class="ui container center">
-    <h1>Create Profile</h1>
-      <div class="ui input">
-        <input class= "fuck" id="name" type="text" placeholder="Your Name">
-      </div>
-      <br>
-      <div class="ui input">
-        <input id="username" type="text" placeholder="Username">
-      </div>
-      <br>
-      <div class="ui input">
-        <input id="email" type="text" placeholder="Email Address">
-      </div>
-      <br>
-      <div class="ui input">
-        <input id="pass" type="password" placeholder="Choose a Password">
-      </div>
-      <br>
-      <div class="ui input">
-        <input id="passConfirm" type="password" placeholder="Confirm Password">
-      </div>
-      <br>
-    <div class="ui animated button" tabindex="0">
-      <div class="visible content">Submit</div>
-      <div class="hidden content">
-        <i class="right arrow icon"></i>
+<template name="editProfile">
+  <div class="ui one column stackable center aligned grid">
+    <div class="column twelve wide">
+      <h1>Edit Profile</h1>
+        <div class="ui input">
+          <input id="name" type="text" placeholder="Your Name">
+        </div>
+        <br>
+        <span>
+          <div class="ui input">
+            <input id="username" type="text" placeholder="Username">
+          </div>
+          <div class="ui active small inline loader"></div>
+        </span>
+        <br>
+        <div class="ui input">
+          <input id="email" type="text" placeholder="Email Address">
+        </div>
+        <br>
+        <div class="ui input">
+          <input id="pass" type="password" placeholder="Choose a Password">
+        </div>
+        <br>
+        <div class="ui input">
+          <input id="passConfirm" type="password" placeholder="Confirm Password">
+        </div>
+        <br>
+      <div class="ui animated button" tabindex="0">
+        <div class="visible content">Submit</div>
+        <div class="hidden content">
+          <i class="right arrow icon"></i>
+        </div>
       </div>
     </div>
   </div>

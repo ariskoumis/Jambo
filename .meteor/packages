@@ -22,3 +22,7 @@ insecure                # Allow all DB writes from clients (for prototyping)
 semantic:ui
 flemay:less-autoprefixer
 session
+accounts-ui
+accounts-password
+kadira:flow-router
+kadira:blaze-layout
