@@ -32,6 +32,5 @@ if (Meteor.isClient) {
     //Form
     Template.editProfile.events({
 
-    })
-
+    });
 }

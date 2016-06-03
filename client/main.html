@@ -14,8 +14,8 @@
 
 
 <template name="home">
-    <a href="/editProfile" id="createProfile" class="fluid ui button">Create Profile</a>
-    <button id="inbox" class="fluid ui button">Inbox</button>
+    <a href="/editProfile" class="fluid ui button">Edit Profile</a>
+    <a href="/databaseTest" class="fluid ui button">Database Testing</a>
 </template>
 
 <template name="menu">
@@ -83,4 +83,30 @@
 
 <template name='inbox'>
   <p>Dis empty rn</p>
+</template>
+
+<template name='databaseTest'>
+  <div class="ui one column stackable center aligned grid">
+    <div class="column twelve wide">
+      <h1>DB Test</h1>
+        <div class="ui input">
+          <input id="dbName" type="text" placeholder="Your Name">
+        </div>
+        <br>
+          <div class="ui input">
+            <input id="dbUsername" type="text" placeholder="Username">
+          </div>
+        <br>
+        <div class="ui input">
+          <input id="dbEmail" type="text" placeholder="Email Address">
+        </div>
+        <br>
+      <div class="ui animated button" tabindex="0">
+        <div class="visible content">Submit</div>
+        <div class="hidden content">
+          <i class="right arrow icon"></i>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
