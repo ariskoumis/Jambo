@@ -101,7 +101,7 @@
           <input id="dbEmail" type="text" placeholder="Email Address">
         </div>
         <br>
-      <div class="ui animated button" tabindex="0">
+      <div id="dbTestSubmit" class="ui animated button" tabindex="0">
         <div class="visible content">Submit</div>
         <div class="hidden content">
           <i class="right arrow icon"></i>
@@ -109,4 +109,9 @@
       </div>
     </div>
   </div>
+  <ul>
+  {{#each users}}
+    <li>{{name}}, {{username}}, {{email}} </li>
+  {{/each}}
+  </ul>
 </template>

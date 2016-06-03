@@ -4,6 +4,8 @@ import { Session } from 'meteor/session'
 
 import './main.html';
 
+TestDB = new Mongo.Collection('test');
+
 if (Meteor.isClient) {
 
     //Menu
@@ -33,4 +35,22 @@ if (Meteor.isClient) {
     Template.editProfile.events({
 
     });
+
+    Template.databaseTest.events({
+        "click #dbTestSubmit": function() {
+            var user = {
+                name: $('#dbName').val(),
+                username: $('#dbUsername').val(),
+                email: $('#dbEmail').val(),
+            };
+            TestDB.insert(user)
+            console.log('submitted', user)
+        },
+    })
+
+    Template.databaseTest.helpers({
+        'users': function() {
+            return TestDB.find();
+        }
+    })
 }
