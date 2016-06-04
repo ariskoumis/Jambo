@@ -53,4 +53,7 @@ if (Meteor.isClient) {
             return TestDB.find();
         }
     })
+    $('.ui.sidebar')
+      .sidebar('toggle')
+    ;
 }

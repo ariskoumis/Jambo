@@ -6,10 +6,15 @@
 </body>
 
 <template name="main">
+{{#if currentUser}}
   <div class= "ui container">
     {{> menu}}
     {{> Template.dynamic template=currentPage}}
   </div>
+{{else}}
+  {{> loginButtons}}
+{{/if}}
+
 </template>
 
 
