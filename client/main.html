@@ -6,15 +6,14 @@
 </body>
 
 <template name="main">
-{{#if currentUser}}
-  <div class= "ui container">
-    {{> menu}}
-    {{> Template.dynamic template=currentPage}}
+  <div class= "ui center aligned container">
+    {{#if currentUser}}
+        {{> menu}}
+        {{> Template.dynamic template=currentPage}}
+    {{else}}
+      {{> login}}
+    {{/if}}
   </div>
-{{else}}
-  {{> loginButtons}}
-{{/if}}
-
 </template>
 
 
@@ -35,24 +34,15 @@
       <a class="item">
         <i class="grid layout icon"></i> Browse
       </a>
-      <div class="ui simple dropdown item">
-        More
-        <i class="dropdown icon"></i>
-        <div class="menu">
-          <a href="editProfile" class="item"><i class="edit icon"></i> Edit Profile</a>
-          <a class="item"><i class="globe icon"></i> Choose Language</a>
-          <a class="item"><i class="settings icon"></i> Account Settings</a>
-        </div>
-      </div>
     </div>
   </div>
   <br>
 </template>
 
-<template name="editProfile">
+<template name="createProfile">
   <div class="ui one column stackable center aligned grid">
     <div class="column twelve wide">
-      <h1>Edit Profile</h1>
+      <h1>Create Profile</h1>
         <div class="ui input">
           <input id="name" type="text" placeholder="Your Name">
         </div>
@@ -119,4 +109,68 @@
     <li>{{name}}, {{username}}, {{email}} </li>
   {{/each}}
   </ul>
+</template>
+
+<template name="login">
+  <h1 class="align-center">Login</h1>
+  <hr>
+
+  <div id="loginDiv">
+    <form id="loginForm" class="login ui form">
+      <div class="field">
+        <label>Email</label>
+        <input type="text" name="email" placeholder="Email">
+      </div>
+      <div class="field">
+        <label class="left">Password</label>
+        <input type="password" name="password" placeholder="Password">
+      </div>
+      <div onclick="javascript:$('#loginForm').submit()" class="ui fluid animated button" type="submit" tabindex="0">
+        <div class="visible content">Submit</div>
+        <div class="hidden content">
+          <i class="right arrow icon"></i>
+        </div>
+      </div>
+    </form>
+
+    <span><a href="javascript:" id="createAccount">Create Account</a></span> //
+    <span><a href="javascript:" id="forgotPassword">Forgot Password?</a></span>
+  </div>
+
+  <div id="createAccountDiv">
+    <form id="createAccountForm" class="ui form">
+      <div class="six fields">
+        <div class="six wide field">
+          <label>First Name</label>
+          <input class="ui" type="text" name="firstName" placeholder="John">
+        </div>
+        <div class="six wide field">
+          <label>Last Name</label>
+          <input type="text" name="lastName" placeholder="Doe">
+        </div>
+        <div class="four wide field">
+          <label>Date of Birth (MM/DD/YYYY)</label>
+          <div class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="text" name="email" placeholder="Email">
+      </div>
+      <div class="field">
+        <label class="left">Password</label>
+        <input type="password" name="password" placeholder="Password">
+      </div> 
+      <div onclick="javascript:$('#createAccountForm').submit()" class="ui fluid animated button" type="submit" tabindex="0">
+        <div class="visible content">Submit</div>
+        <div class="hidden content">
+          <i class="right arrow icon"></i>
+        </div>
+      </div>
+    </form>
+  </div> 
+
+
+
 </template>

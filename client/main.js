@@ -32,7 +32,7 @@ if (Meteor.isClient) {
     });
 
     //Form
-    Template.editProfile.events({
+    Template.createProfile.events({
 
     });
 
@@ -48,12 +48,43 @@ if (Meteor.isClient) {
         },
     })
 
+
     Template.databaseTest.helpers({
         'users': function() {
             return TestDB.find();
         }
     })
-    $('.ui.sidebar')
-      .sidebar('toggle')
-    ;
+
+    Template.login.onRendered(function(){
+        $('#createAccountDiv').hide();
+        $('#forgotPasswordDiv').hide();
+    })
+
+    Template.login.events({
+        "submit #loginForm": function(event) {
+            event.preventDefault();
+            var email = $('[name=email]').val();
+            var password = $('[name=password]').val();
+            Meteor.loginWithPassword(email,password, function(err) {
+                if (err) {
+                    $('#loginDiv').transition('shake');
+                }
+            });
+        },
+        "submit #createAccountForm": function(event) {
+            event.preventDefault();
+            var email = $('[name=email]').val();
+            var firstName = $('[name=firstName]').val();
+            var lastName = $('[name=lastName').val();
+            var password = $('[name=password]').val();
+        },
+        "click #createAccount": function() {
+            $('#loginDiv').hide(500);
+            $('#createAccountDiv').show(500);
+        },
+        "click #forgotPassword": function() {
+            $('#loginDiv').hide(500);
+            $('#forgotPasswordDiv').show(500);
+        },
+    })
 }
