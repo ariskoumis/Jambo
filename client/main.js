@@ -68,15 +68,25 @@ if (Meteor.isClient) {
             Meteor.loginWithPassword(email,password, function(err) {
                 if (err) {
                     $('#loginDiv').transition('shake');
+                    console.log(err)
                 }
             });
         },
         "submit #createAccountForm": function(event) {
             event.preventDefault();
-            var email = $('[name=email]').val();
-            var firstName = $('[name=firstName]').val();
-            var lastName = $('[name=lastName').val();
-            var password = $('[name=password]').val();
+            var user = {
+                email: $('[name=email]').val(),
+                firstName: $('[name=firstName]').val(),
+                lastName: $('[name=lastName').val(),
+                password: $('[name=password]').val(),
+                birthday: $('[name=birthday]').val()
+            }
+            Accounts.createUser(user, function(err) {
+                if (err)
+                    console.log(err)
+                else
+                    console.log('success!')
+            });
         },
         "click #createAccount": function() {
             $('#loginDiv').hide(500);
