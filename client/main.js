@@ -65,16 +65,13 @@ if (Meteor.isClient) {
 
     Template.login.events({
         "submit #loginForm": function(event) {
-            var email = $('[name=email]').val();
-            var password = $('[name=password]').val();
+            var email = $('[name=loginEmail]').val();
+            var password = $('[name=loginPassword]').val();
             Meteor.loginWithPassword(email,password, function(err) {
                 if (err) {
                     $('#loginDiv').transition('shake');
                     $('#errorList').append('<li>'+err.reason+'</li>');
                     $('#errorDiv').show()
-                }
-                else {
-                    console.log('all good')
                 }
             });
             event.preventDefault();
@@ -96,6 +93,7 @@ if (Meteor.isClient) {
                     $('#errorDiv').show()
                 } else {
                     Meteor.loginWithPassword(user.email,user.password);
+                    $('.ui.basic.modal').modal('show');
                 }
             });
         },

@@ -10,10 +10,13 @@
         {{#if currentUser}}
                 {{> menu}}
                 {{> Template.dynamic template=currentPage}}
+                {{> welcomeModal}}
         {{else}}
             {{> login}}
         {{/if}}
     </div>
+
+
 </template>
 
 
@@ -119,11 +122,11 @@
         <form id="loginForm" class="login ui form attached fluid">
             <div class="field">
                 <label>Email</label>
-                <input type="text" name="email" placeholder="Email" required>
+                <input type="text" name="loginEmail" placeholder="Email" required>
             </div>
             <div class="field">
                 <label class="left">Password</label>
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="loginPassword" placeholder="Password" required>
             </div>
             <div onclick="javascript:$('#loginForm').submit()" class="ui fluid animated button" type="submit" tabindex="0">
                 <div class="visible content">Login</div>
@@ -178,4 +181,34 @@
         </ul>
     </div>
 
+</template>
+
+<template name="welcomeModal">
+    
+    <div class="ui basic modal">
+        <i class="close icon"></i>
+        <div class="header">
+            Welcome!
+        </div>
+        <div class="image content">
+        <div class="image">
+            <i class="music icon"></i>
+        </div>
+        <div class="description">
+          <p>Welcome to Jambo!</p>
+        </div>
+        </div>
+        <div class="actions">
+            <div class="two fluid ui inverted buttons">
+                <div class="ui red basic inverted button">
+                    <i class="remove icon"></i>
+                    Maybe Later
+                </div>
+                <div class="ui green basic inverted button">
+                    <i class="checkmark icon"></i>
+                    Let's go!
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
