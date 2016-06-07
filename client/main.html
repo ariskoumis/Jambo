@@ -1,175 +1,181 @@
 <head>
-  <title>Jambo</title>
+    <title>Jambo</title>
 </head>
 
 <body>
 </body>
 
 <template name="main">
-  <div class= "ui center aligned container">
-    {{#if currentUser}}
-        {{> menu}}
-        {{> Template.dynamic template=currentPage}}
-    {{else}}
-      {{> login}}
-    {{/if}}
-  </div>
+    <div class= "ui center aligned container">
+        {{#if currentUser}}
+                {{> menu}}
+                {{> Template.dynamic template=currentPage}}
+        {{else}}
+            {{> login}}
+        {{/if}}
+    </div>
 </template>
 
 
 <template name="home">
-    <a href="/editProfile" class="fluid ui button">Edit Profile</a>
-    <a href="/databaseTest" class="fluid ui button">Database Testing</a>
+        <a href="/editProfile" class="fluid ui button">Edit Profile</a>
+        <a href="/databaseTest" class="fluid ui button">Database Testing</a>
 </template>
 
 <template name="menu">
-  <div class="ui attached menu">
-    <div class="ui container">
-      <a href="/" id= "menuHome" class="item">
-        <i class="home icon"></i> Home
-      </a>
-      <a href="/inbox" id="menuInbox" class="item">
-        <i class="mail icon"></i> Messages
-      </a>
-      <a class="item">
-        <i class="grid layout icon"></i> Browse
-      </a>
+    <div class="ui attached menu">
+        <div class="ui container">
+            <a href="/" id= "menuHome" class="item">
+                <i class="home icon"></i> Home
+            </a>
+            <a href="/inbox" id="menuInbox" class="item">
+                <i class="mail icon"></i> Messages
+            </a>
+            <a class="item">
+                <i class="grid layout icon"></i> Browse
+            </a>
+        </div>
     </div>
-  </div>
-  <br>
+    <br>
 </template>
 
 <template name="createProfile">
-  <div class="ui one column stackable center aligned grid">
-    <div class="column twelve wide">
-      <h1>Create Profile</h1>
-        <div class="ui input">
-          <input id="name" type="text" placeholder="Your Name">
+    <div class="ui one column stackable center aligned grid">
+        <div class="column twelve wide">
+            <h1>Create Profile</h1>
+                <div class="ui input">
+                    <input id="name" type="text" placeholder="Your Name">
+                </div>
+                <br>
+                <span>
+                    <div class="ui input">
+                        <input id="username" type="text" placeholder="Username">
+                    </div>
+                    <div class="ui active small inline loader"></div>
+                </span>
+                <br>
+                <div class="ui input">
+                    <input id="email" type="text" placeholder="Email Address">
+                </div>
+                <br>
+                <div class="ui input">
+                    <input id="pass" type="password" placeholder="Choose a Password">
+                </div>
+                <br>
+                <div class="ui input">
+                    <input id="passConfirm" type="password" placeholder="Confirm Password">
+                </div>
+                <br>
+            <div class="ui animated button" tabindex="0">
+                <div class="visible content">Submit</div>
+                <div class="hidden content">
+                    <i class="right arrow icon"></i>
+                </div>
+            </div>
         </div>
-        <br>
-        <span>
-          <div class="ui input">
-            <input id="username" type="text" placeholder="Username">
-          </div>
-          <div class="ui active small inline loader"></div>
-        </span>
-        <br>
-        <div class="ui input">
-          <input id="email" type="text" placeholder="Email Address">
-        </div>
-        <br>
-        <div class="ui input">
-          <input id="pass" type="password" placeholder="Choose a Password">
-        </div>
-        <br>
-        <div class="ui input">
-          <input id="passConfirm" type="password" placeholder="Confirm Password">
-        </div>
-        <br>
-      <div class="ui animated button" tabindex="0">
-        <div class="visible content">Submit</div>
-        <div class="hidden content">
-          <i class="right arrow icon"></i>
-        </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <template name='inbox'>
-  <p>Dis empty rn</p>
+    <p>Dis empty rn</p>
 </template>
 
 <template name='databaseTest'>
-  <div class="ui one column stackable center aligned grid">
-    <div class="column twelve wide">
-      <h1>DB Test</h1>
-        <div class="ui input">
-          <input id="dbName" type="text" placeholder="Your Name">
+    <div class="ui one column stackable center aligned grid">
+        <div class="column twelve wide">
+            <h1>DB Test</h1>
+                <div class="ui input">
+                    <input id="dbName" type="text" placeholder="Your Name">
+                </div>
+                <br>
+                    <div class="ui input">
+                        <input id="dbUsername" type="text" placeholder="Username">
+                    </div>
+                <br>
+                <div class="ui input">
+                    <input id="dbEmail" type="text" placeholder="Email Address">
+                </div>
+                <br>
+            <div id="dbTestSubmit" class="ui animated button" tabindex="0">
+                <div class="visible content">Submit</div>
+                <div class="hidden content">
+                    <i class="right arrow icon"></i>
+                </div>
+            </div>
         </div>
-        <br>
-          <div class="ui input">
-            <input id="dbUsername" type="text" placeholder="Username">
-          </div>
-        <br>
-        <div class="ui input">
-          <input id="dbEmail" type="text" placeholder="Email Address">
-        </div>
-        <br>
-      <div id="dbTestSubmit" class="ui animated button" tabindex="0">
-        <div class="visible content">Submit</div>
-        <div class="hidden content">
-          <i class="right arrow icon"></i>
-        </div>
-      </div>
     </div>
-  </div>
-  <ul>
-  {{#each users}}
-    <li>{{name}}, {{username}}, {{email}} </li>
-  {{/each}}
-  </ul>
+    <ul>
+    {{#each users}}
+        <li>{{name}}, {{username}}, {{email}} </li>
+    {{/each}}
+    </ul>
 </template>
 
 <template name="login">
-  <h1 class="align-center">Login</h1>
-  <hr>
+    <h1 class="align-center">Login</h1>
+    <hr>
 
-  <div id="loginDiv">
-    <form id="loginForm" class="login ui form">
-      <div class="field">
-        <label>Email</label>
-        <input type="text" name="email" placeholder="Email">
-      </div>
-      <div class="field">
-        <label class="left">Password</label>
-        <input type="password" name="password" placeholder="Password">
-      </div>
-      <div onclick="javascript:$('#loginForm').submit()" class="ui fluid animated button" type="submit" tabindex="0">
-        <div class="visible content">Login</div>
-        <div class="hidden content">
-          <i class="right arrow icon"></i>
-        </div>
-      </div>
-    </form>
+    <div id="loginDiv">
+        <form id="loginForm" class="login ui form attached fluid">
+            <div class="field">
+                <label>Email</label>
+                <input type="text" name="email" placeholder="Email" required>
+            </div>
+            <div class="field">
+                <label class="left">Password</label>
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <div onclick="javascript:$('#loginForm').submit()" class="ui fluid animated button" type="submit" tabindex="0">
+                <div class="visible content">Login</div>
+                <div class="hidden content">
+                    <i class="right arrow icon"></i>
+                </div>
+            </div>
+        </form>
 
-    <span><a href="javascript:" id="createAccount">Create Account</a></span> //
-    <span><a href="javascript:" id="forgotPassword">Forgot Password?</a></span>
-  </div>
+        <span><a href="javascript:" id="createAccount">Create Account</a></span> //
+        <span><a href="javascript:" id="forgotPassword">Forgot Password?</a></span>
+    </div>
 
-  <div id="createAccountDiv">
-    <form id="createAccountForm" class="ui form">
-      <div class="six fields">
-        <div class="six wide field">
-          <label>First Name</label>
-          <input class="ui" type="text" name="firstName" placeholder="John">
-        </div>
-        <div class="six wide field">
-          <label>Last Name</label>
-          <input type="text" name="lastName" placeholder="Doe">
-        </div>
-        <div class="four wide field">
-          <label>Date of Birth (MM/DD/YYYY)</label>
-          <input type="date" name="birthday">
-        </div>
-      </div>
-      <div class="field">
-        <label>Email</label>
-        <input type="text" name="email" placeholder="Email">
-      </div>
-      <div class="field">
-        <label class="left">Password</label>
-        <input type="password" name="password" placeholder="Password">
-      </div> 
-      <div onclick="javascript:$('#createAccountForm').submit()" class="ui fluid animated button" type="submit" tabindex="0">
-        <div class="visible content">Submit</div>
-        <div class="hidden content">
-          <i class="right arrow icon"></i>
-        </div>
-      </div>
-    </form>
-  </div> 
+    <div id="createAccountDiv">
+        <form id="createAccountForm" class="ui form attached fluid">
+            <div class="six fields">
+                <div class="six wide field required">
+                    <label>First Name</label>
+                    <input class="ui" type="text" name="firstName" placeholder="John" required>
+                </div>
+                <div class="six wide field required">
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" placeholder="Doe" required>
+                </div>
+                <div class="four wide field required">
+                    <label>Birthday</label>
+                    <input type="date" name="birthday" required>
+                </div>
+            </div>
+            <div class="field required">
+                <label>Email</label>
+                <input type="text" name="email" placeholder="Email" required>
+            </div>
+            <div class="field required">
+                <label class="left">Password</label>
+                <input type="password" name="password" placeholder="Password" required>
+            </div> 
+            <div onclick="javascript:$('#createAccountForm').submit()" class="ui fluid animated button" type="submit" tabindex="0">
+                <div class="visible content">Submit</div>
+                <div class="hidden content">
+                    <i class="right arrow icon"></i>
+                </div>
+            </div>
+        </form>
+    </div>
 
-
+    <div class="ui error message" id="errorDiv">
+        <div class= "header">
+            There were some errors with your submission
+        </div>
+        <ul class="list" id="errorList">
+        </ul>
+    </div>
 
 </template>
