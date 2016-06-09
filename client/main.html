@@ -15,28 +15,34 @@
             {{> login}}
         {{/if}}
     </div>
-
-
 </template>
 
 
 <template name="home">
-        <a href="/editProfile" class="fluid ui button">Edit Profile</a>
-        <a href="/databaseTest" class="fluid ui button">Database Testing</a>
+    <a href="/editProfile" class="fluid ui button">Edit Profile</a>
+    <a href="/databaseTest" class="fluid ui button">Database Testing</a>
 </template>
 
 <template name="menu">
-    <div class="ui attached menu">
+    <div class="ui inverted left vertical labeled icon menu sidebar">
+        <a href="/" id= "menuHome" class="item">
+            <i class="home icon"></i> Home
+        </a>
+        <a href="/inbox" id="menuInbox" class="item">
+            <i class="mail icon"></i> Messages
+        </a>
+        <a class="item">
+            <i class="grid layout icon"></i> Browse
+        </a>
+    </div>
+    <div class="ui menu">
         <div class="ui container">
-            <a href="/" id= "menuHome" class="item">
-                <i class="home icon"></i> Home
-            </a>
-            <a href="/inbox" id="menuInbox" class="item">
-                <i class="mail icon"></i> Messages
-            </a>
-            <a class="item">
-                <i class="grid layout icon"></i> Browse
-            </a>
+            <div id="sideMenu" class="item">
+                <i class="music icon"></i>
+            </div>
+        </div>
+        <div class="ui center aligned container">
+            {{currentPage}}
         </div>
     </div>
     <br>
@@ -212,3 +218,4 @@
         </div>
     </div>
 </template>
+

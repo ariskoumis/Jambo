@@ -11,20 +11,19 @@ if (Meteor.isClient) {
     //Menu
     Template.menu.events({
         "click #menuHome": function() {
-
+            $(".ui.sidebar").sidebar('hide');
+            console.log('hey')
         },
         "click #menuInbox": function() {
-
+            $(".ui.sidebar").sidebar('hide');
         },
     });
 
     //Page
-    Template.main.onRendered(function() {
-
-    });
-
     Template.main.events({
-
+        "click #sideMenu": function() {
+            $(".ui.sidebar").sidebar('show')
+        }
     });
 
     Template.main.helpers({
