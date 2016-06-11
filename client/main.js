@@ -37,6 +37,9 @@ if (Meteor.isClient) {
     Template.main.events({
         "click #sideMenu": function() {
             $(".ui.sidebar").sidebar('show')
+        },
+        "click #testButton": function() {
+            MeteorCameraUI.getPicture();
         }
     });
 
