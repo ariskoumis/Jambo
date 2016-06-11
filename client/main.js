@@ -22,18 +22,13 @@ if (Meteor.isClient) {
     Template.menu.helpers({
         'currentPageHeader': function() {
             var string = Session.get('currentPage')
+            //Capitalize Multi-word Title
             if (string.indexOf("_") != -1) {
                 var position = string.indexOf("_");
                 string = string.substr(0,string.indexOf("_")) + " " + string.substr(string.indexOf("_")+1)
-                console.log(string)
-                string = string.charAt(0).toUpperCase() + string.slice(1);
-                console.log(string)
                 string = string.slice(0,position+1)+string.charAt(position+1).toUpperCase()+string.slice(position+2,string.length)
-                console.log(string)
             }
-            else {
-               string = string.charAt(0).toUpperCase() + string.slice(1); 
-            }
+            string = string.charAt(0).toUpperCase() + string.slice(1); 
             return string
         }
     })
