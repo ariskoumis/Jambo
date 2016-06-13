@@ -72,15 +72,18 @@ if (Meteor.isClient) {
     })
 
     Template.login.onRendered(function(){
-        $('#createAccountDiv').hide();
-        $('#forgotPasswordDiv').hide();
-        $('#errorDiv').hide();
-        $('#createAccountForm').validate();
-        $('#loginForm').validate();
+        $document.ready(function() {
+            $('#createAccountDiv').hide();
+            $('#forgotPasswordDiv').hide();
+            $('#errorDiv').hide();
+            $('#createAccountForm').validate();
+            $('#loginForm').validate();
+        })
     })
 
     Template.login.events({
         "submit #loginForm": function(event) {
+            event.preventDefault();
             var email = $('[name=loginEmail]').val();
             var password = $('[name=loginPassword]').val();
             Meteor.loginWithPassword(email,password, function(err) {
@@ -90,10 +93,8 @@ if (Meteor.isClient) {
                     $('#errorDiv').show()
                 }
             });
-            event.preventDefault();
         },
         "submit #createAccountForm": function(event) {
-            console.log('submitting!')
             event.preventDefault();
             var user = {
                 email: $('[name=email]').val(),
