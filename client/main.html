@@ -11,7 +11,6 @@
                 {{> menu}}
                 {{> Template.dynamic template=currentPage}}
                 {{> welcomeModal}}
-                <button class="fluid ui button" id="testButton">HEY></button>
         {{else}}
             {{> login}}
         {{/if}}
@@ -22,6 +21,8 @@
 <template name="home">
     <a href="/edit_profile" class="fluid ui button">Edit Profile</a>
     <a href="/database_test" class="fluid ui button">Database Test</a>
+    <button class="fluid ui button" id="testButton">HEY</button>
+    <button class="fluid ui button" id="logoutButton">LOGOUT</button>
 </template>
 
 <template name="menu">
@@ -124,7 +125,6 @@
 <template name="login">
     <h1 class="align-center">Login</h1>
     <hr>
-
     <div id="loginDiv">
         <form id="loginForm" class="login ui form attached fluid">
             <div class="field">
@@ -151,7 +151,10 @@
         <form id="createAccountForm" class="ui form attached fluid">
             <div class="six fields">
                 <div class="six wide field required">
-                    <label>First Name</label>
+                    <span> 
+                        <a href="javascript:" id="backToLogin" class="leftAnchor">Back</a>
+                        <label>First Name</label>
+                    </span>
                     <input class="ui" type="text" name="firstName" placeholder="John" required>
                 </div>
                 <div class="six wide field required">

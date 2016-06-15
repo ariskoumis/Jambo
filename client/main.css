@@ -6,3 +6,8 @@ span {
 	margin-top: 10px;
 	padding-right: 60px;
 }
+
+.leftAnchor {
+	position: absolute;
+    left: 0px;
+}

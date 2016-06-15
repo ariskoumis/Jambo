@@ -40,6 +40,9 @@ if (Meteor.isClient) {
         },
         "click #testButton": function() {
             MeteorCameraUI.getPicture();
+        },
+        "click #logoutButton": function() {
+            Meteor.logout();
         }
     });
 
@@ -52,7 +55,7 @@ if (Meteor.isClient) {
 
     });
 
-    Template.databaseTest.events({
+    Template.database_test.events({
         "click #dbTestSubmit": function() {
             var user = {
                 name: $('#dbName').val(),
@@ -65,20 +68,18 @@ if (Meteor.isClient) {
     })
 
 
-    Template.databaseTest.helpers({
+    Template.database_test.helpers({
         'users': function() {
             return TestDB.find();
         }
     })
 
     Template.login.onRendered(function(){
-        $document.ready(function() {
-            $('#createAccountDiv').hide();
-            $('#forgotPasswordDiv').hide();
-            $('#errorDiv').hide();
-            $('#createAccountForm').validate();
-            $('#loginForm').validate();
-        })
+        $('#createAccountDiv').hide();
+        $('#forgotPasswordDiv').hide();
+        $('#errorDiv').hide();
+        $('#createAccountForm').validate();
+        $('#loginForm').validate();
     })
 
     Template.login.events({
@@ -121,6 +122,11 @@ if (Meteor.isClient) {
         "click #forgotPassword": function() {
             $('#loginDiv').hide(500);
             $('#forgotPasswordDiv').show(500);
+        },
+        "click #backToLogin": function() {
+            $('#createAccountDiv').hide(500)
+            $('#forgotPasswordDiv').hide(500)
+            $('#loginDiv').show(500)
         },
     })
 }
