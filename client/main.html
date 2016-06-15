@@ -26,18 +26,7 @@
 </template>
 
 <template name="menu">
-    <div class="ui inverted left vertical labeled icon menu sidebar">
-        <a href="/" id= "menuHome" class="item">
-            <i class="home icon"></i> Home
-        </a>
-        <a href="/inbox" id="menuInbox" class="item">
-            <i class="mail icon"></i> Messages
-        </a>
-        <a class="item">
-            <i class="grid layout icon"></i> Browse
-        </a>
-    </div>
-    <div class="ui menu">
+    <div class="ui top menu">
         <div class="ui container">
             <div id="sideMenu" class="item">
                 <i class="music icon"></i>
@@ -46,6 +35,22 @@
             <div class="ui center aligned container pageName">
                 {{currentPageHeader}}
             </div>
+    </div>
+    <div class="ui bottom pushable">
+        <div class="ui inverted left vertical labeled icon menu sidebar">
+            <a href="/" id= "menuHome" class="item">
+                <i class="home icon"></i> Home
+            </a>
+            <a href="/inbox" id="menuInbox" class="item">
+                <i class="mail icon"></i> Messages
+            </a>
+            <a class="item">
+                <i class="grid layout icon"></i> Browse
+            </a>
+        </div>
+        <div class="pusher">
+            
+        </div>
     </div>
     <br>
 </template>

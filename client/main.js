@@ -100,7 +100,7 @@ if (Meteor.isClient) {
             var user = {
                 email: $('[name=email]').val(),
                 firstName: $('[name=firstName]').val(),
-                lastName: $('[name=lastName').val(),
+                lastName: $('[name=lastName]').val(),
                 password: $('[name=password]').val(),
                 birthday: $('[name=birthday]').val()
             }
@@ -110,8 +110,15 @@ if (Meteor.isClient) {
                     $('#errorList').append('<li>'+err.reason+'</li>');
                     $('#errorDiv').show()
                 } else {
-                    Meteor.loginWithPassword(user.email,user.password);
-                    $('.ui.basic.modal').modal('show');
+                    Meteor.loginWithPassword(user.email,user.password, function(err) {
+                        if (err) {
+                            $('#createAccountDiv').transition('shake');
+                            $('#errorList').append('<li>'+err.reason+'</li>');
+                            $('#errorDiv').show()
+                        } else {
+                            $('.ui.basic.modal').modal('show');
+                        }
+                    });
                 }
             });
         },
@@ -127,6 +134,6 @@ if (Meteor.isClient) {
             $('#createAccountDiv').hide(500)
             $('#forgotPasswordDiv').hide(500)
             $('#loginDiv').show(500)
-        },
+        }
     })
 }
