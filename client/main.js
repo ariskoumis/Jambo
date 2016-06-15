@@ -7,7 +7,7 @@ import './main.html';
 TestDB = new Mongo.Collection('test');
 
 if (Meteor.isClient) {
-
+    Meteor.subscribe("userData")
     //Menu
     Template.menu.events({
         "click #menuHome": function() {
@@ -51,8 +51,17 @@ if (Meteor.isClient) {
     });
 
     //Form
-    Template.createProfile.events({
+    Template.edit_profile.events({
 
+    });
+
+    Template.edit_profile.helpers({
+        'firstName': function() {
+            return Meteor.user().firstName
+        },
+        'lastName': function() {
+            return Meteor.user().lastName
+        }
     });
 
     Template.database_test.events({

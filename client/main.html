@@ -55,41 +55,14 @@
     <br>
 </template>
 
-<template name="createProfile">
-    <div class="ui one column stackable center aligned grid">
-        <div class="column twelve wide">
-            <h1>Create Profile</h1>
-                <div class="ui input">
-                    <input id="name" type="text" placeholder="Your Name">
-                </div>
-                <br>
-                <span>
-                    <div class="ui input">
-                        <input id="username" type="text" placeholder="Username">
-                    </div>
-                    <div class="ui active small inline loader"></div>
-                </span>
-                <br>
-                <div class="ui input">
-                    <input id="email" type="text" placeholder="Email Address">
-                </div>
-                <br>
-                <div class="ui input">
-                    <input id="pass" type="password" placeholder="Choose a Password">
-                </div>
-                <br>
-                <div class="ui input">
-                    <input id="passConfirm" type="password" placeholder="Confirm Password">
-                </div>
-                <br>
-            <div class="ui animated button" tabindex="0">
-                <div class="visible content">Submit</div>
-                <div class="hidden content">
-                    <i class="right arrow icon"></i>
-                </div>
-            </div>
-        </div>
-    </div>
+<template name="edit_profile">
+    <span class="nameAndPic">
+        <img class="ui small image" src="http://www.umcmission.org/Images/UserUploadedImages/158/profile%20generic.jpg">
+        <h1>
+            {{firstName}}
+            {{lastName}}
+        </h1>
+    </span>
 </template>
 
 <template name='inbox'>
