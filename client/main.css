@@ -11,3 +11,7 @@ span {
 	position: absolute;
     left: 0px;
 }
+
+html.ios, html.ios body{
+  height: 100%!important;
+}
