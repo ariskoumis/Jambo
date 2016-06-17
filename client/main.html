@@ -173,28 +173,32 @@
 
 <template name="welcomeModal">
     <div class="ui basic modal">
-        <i class="close icon"></i>
-        <div class="header">
-            Welcome!
-        </div>
-        <div class="image content">
-        <div class="image">
-            <i class="music icon"></i>
-        </div>
-        <div class="description">
-          <p>Welcome to Jambo!</p>
-        </div>
-        </div>
-        <div class="actions">
-            <div class="two fluid ui inverted buttons">
-                <div class="ui red basic inverted button">
-                    <i class="remove icon"></i>
-                    Maybe Later
-                </div>
-                <div class="ui green basic inverted button">
-                    <i class="checkmark icon"></i>
-                    Let's go!
-                </div>
+        {{> modalContent}}
+    </div>
+</template>
+
+<template name="modalContent">
+    <i class="close icon"></i>
+    <div class="header">
+        Welcome!
+    </div>
+    <div class="image content">
+    <div class="image">
+        <i class="music icon"></i>
+    </div>
+    <div class="description">
+      <p>Hey there! To get started with Jambo, tell us about yourself by adding more details to your profile!</p>
+    </div>
+    </div>
+    <div class="actions">
+        <div class="two fluid ui inverted buttons">
+            <div id="closeModal" class="ui red basic inverted button">
+                <i class="remove icon"></i>
+                Maybe Later
+            </div>
+            <div id="modalToProfile" class="ui green basic inverted button">
+                <i class="checkmark icon"></i>
+                Let's go!
             </div>
         </div>
     </div>
@@ -206,7 +210,7 @@
             <img src="https://scontent-lax.xx.fbcdn.net/v/t1.0-9/13179289_1311239978890158_3082867865112232899_n.jpg?oh=aba2e9570856ffb01c2762981856063c&oe=57DFD2A2">
         </div>
         <div class="content">
-            <a class="header">Teaser</a>
+            <a class="header">{{firstName}}</a>
         <div class="meta">
             <span class="date">Joined in 2013</span>
         </div>

@@ -55,15 +55,6 @@ if (Meteor.isClient) {
 
     });
 
-    Template.edit_profile.helpers({
-        'firstName': function() {
-            return Meteor.user().firstName
-        },
-        'lastName': function() {
-            return Meteor.user().lastName
-        }
-    });
-
     Template.database_test.events({
         "click #dbTestSubmit": function() {
             var user = {
@@ -151,5 +142,26 @@ if (Meteor.isClient) {
 
     Template.profile.onRendered(function() {
         $('.ui.fluid.card').transition('bounce')
+    })
+
+    Template.profile.helpers({
+        'firstName': function() {
+            return Meteor.user().firstName
+        },
+        'lastName': function() {
+            return Meteor.user().lastName
+        },
+    })
+
+    Template.modalContent.events({
+        "click #modalToProfile": function() {
+            console.log('this is wokring')
+            FlowRouter.go('/profile')
+            $('.ui.basic.modal').modal('hide');
+        },
+        "click #closeModal": function() {
+            console.log('this isnt')
+            $('.ui.basic.modal').modal('hide');
+        }
     })
 }
