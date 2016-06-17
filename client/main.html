@@ -6,7 +6,7 @@
 </body>
 
 <template name="main">
-    <div class= "ui center aligned container">
+    <div class= "ui container">
         {{#if currentUser}}
                 {{> menu}}
                 {{> Template.dynamic template=currentPage}}
@@ -44,8 +44,8 @@
             <a href="/inbox" id="menuInbox" class="item">
                 <i class="mail icon"></i> Messages
             </a>
-            <a class="item">
-                <i class="grid layout icon"></i> Browse
+            <a href="/profile" id= "profile" class="item">
+                <i class="user icon"></i> Profile
             </a>
         </div>
         <div class="pusher">
@@ -172,7 +172,6 @@
 </template>
 
 <template name="welcomeModal">
-    
     <div class="ui basic modal">
         <i class="close icon"></i>
         <div class="header">
@@ -197,6 +196,29 @@
                     Let's go!
                 </div>
             </div>
+        </div>
+    </div>
+</template>
+
+<template name="profile">
+    <div class="ui fluid card">
+        <div class="image">
+            <img src="https://scontent-lax.xx.fbcdn.net/v/t1.0-9/13179289_1311239978890158_3082867865112232899_n.jpg?oh=aba2e9570856ffb01c2762981856063c&oe=57DFD2A2">
+        </div>
+        <div class="content">
+            <a class="header">Teaser</a>
+        <div class="meta">
+            <span class="date">Joined in 2013</span>
+        </div>
+        <div class="description">
+          Teaser is a proud Tiger who is in search of the Mystery Cat #HailSymphonia
+        </div>
+        </div>
+        <div class="extra content">
+            <a>
+              <i class="user icon"></i>
+              22 Friends
+            </a>
         </div>
     </div>
 </template>

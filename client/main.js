@@ -93,9 +93,11 @@ if (Meteor.isClient) {
 
     Template.login.events({
         "submit #loginForm": function(event) {
+            console.log('HEYHEY')
             event.preventDefault();
             var email = $('[name=loginEmail]').val();
             var password = $('[name=loginPassword]').val();
+            console.log('HEYYOU')
             Meteor.loginWithPassword(email,password, function(err) {
                 if (err) {
                     $('#loginDiv').transition('shake');
@@ -103,6 +105,7 @@ if (Meteor.isClient) {
                     $('#errorDiv').show()
                 }
             });
+            console.log('love debugging')
         },
         "submit #createAccountForm": function(event) {
             event.preventDefault();
@@ -144,5 +147,9 @@ if (Meteor.isClient) {
             $('#forgotPasswordDiv').hide(500)
             $('#loginDiv').show(500)
         }
+    })
+
+    Template.profile.onRendered(function() {
+        $('.ui.fluid.card').transition('bounce')
     })
 }

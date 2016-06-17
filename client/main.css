@@ -12,12 +12,6 @@ span {
     left: 0px;
 }
 
-.nameAndPic {
-	top: 100px;
-	left: 50px;
-	position: absolute;
-}
-
 html.ios, html.ios body{
   height: 100%!important;
 }
