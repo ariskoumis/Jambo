@@ -141,8 +141,9 @@ if (Meteor.isClient) {
     })
 
     Template.profile.onRendered(function() {
-        $('.ui.fluid.card').transition('bounce')
-    })
+        $('.ui.fluid.card').transition('bounce');
+        $('.shape').shape();
+    });
 
     Template.profile.helpers({
         'firstName': function() {
@@ -150,6 +151,15 @@ if (Meteor.isClient) {
         },
         'lastName': function() {
             return Meteor.user().lastName
+        },
+    });
+
+    Template.profile.events({
+        'click #flipCard': function() {
+            $('.shape').shape('flip back')
+        },
+        'click #flipCard2': function() {
+            $('.shape').shape('flip over')
         },
     })
 

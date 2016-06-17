@@ -205,24 +205,40 @@
 </template>
 
 <template name="profile">
-    <div class="ui fluid card">
-        <div class="image">
-            <img src="https://scontent-lax.xx.fbcdn.net/v/t1.0-9/13179289_1311239978890158_3082867865112232899_n.jpg?oh=aba2e9570856ffb01c2762981856063c&oe=57DFD2A2">
-        </div>
-        <div class="content">
-            <a class="header">{{firstName}}</a>
-        <div class="meta">
-            <span class="date">Joined in 2013</span>
-        </div>
-        <div class="description">
-          Teaser is a proud Tiger who is in search of the Mystery Cat #HailSymphonia
-        </div>
-        </div>
-        <div class="extra content">
-            <a>
-              <i class="user icon"></i>
-              22 Friends
-            </a>
+    <div class="ui shape">
+        <div class="sides">
+            <div id="profileCard" class="active side">
+                <div class="ui content fluid card">
+                    <div class="image">
+                        <img src="https://scontent-lax.xx.fbcdn.net/v/t1.0-9/13179289_1311239978890158_3082867865112232899_n.jpg?oh=aba2e9570856ffb01c2762981856063c&oe=57DFD2A2">
+                    </div>
+                    <div class="content">
+                        <div id="flipCard" class="floatRight">
+                            <i class="edit icon large"></i>
+                        </div>
+                        <a class="header">{{firstName}}</a>
+                        <div class="meta">
+                            <span class="date">Joined in 2013</span>
+                        </div>
+                        <div class="description">
+                          Teaser is a proud Tiger who is in search of the Mystery Cat #HailSymphonia
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a>
+                          <i class="user icon"></i>
+                          22 Friends
+                        </a>
+                    </div>
+                    <button id="flipCard">SWITCH</button>
+                </div>
+            </div>
+            <div class="side">    
+                <div class="ui content fluid card">
+                    HEY
+                    <button id="flipCard2">SWITCH</button>
+                </div>
+            </div>
         </div>
     </div>
 </template>

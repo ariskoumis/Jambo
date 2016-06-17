@@ -12,6 +12,11 @@ span {
     left: 0px;
 }
 
+.floatRight {
+	float: right;
+	top: 0;
+}
+
 html.ios, html.ios body{
   height: 100%!important;
 }
