@@ -17,6 +17,12 @@ span {
 	top: 0;
 }
 
+.editProfileForm {
+	margin-left: 50px;
+	padding-left: 60px;
+	padding-right: 60px;
+}
+
 html.ios, html.ios body{
   height: 100%!important;
 }
