@@ -143,6 +143,9 @@ if (Meteor.isClient) {
     Template.profile.onRendered(function() {
         $('.ui.fluid.card').transition('bounce');
         $('.shape').shape();
+        $('.ui.dropdown').dropdown({
+            allowAdditions: true,
+        });
     });
 
     Template.profile.helpers({
