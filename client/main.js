@@ -158,6 +158,23 @@ if (Meteor.isClient) {
         'click #flipCard2': function() {
             $('.shape').shape('flip over')
         },
+        'click #editProfileSubmit': function() {
+            console.log('im here')
+            var userInfo = {
+                primaryInstrument: $('[name=primaryInstrument]').val(),
+                secondaryInstruments: $('[name=secondaryInstruments]').val().split(','),
+                skillLevel: $('[name=skillLevel]').val(),
+                userRecording: $('[name=userRecording]').val(),
+                groupsPurpose: $('[name=groupsPurpose]').val(),
+                peopleWhoPlay: $('[name=peopleWhoPlay]').val().split(','),
+                genres: $('[name=genres]').val().split(','),
+                musicalInfluences: [$('[name=musicalInfluence1]').val(),$('[name=musicalInfluence2]').val(), $('[name=musicalInfluence3]').val()],
+                favoriteSongs: [$('[name=favoriteSong1]').val(),$('[name=favoriteSong2]').val(), $('[name=favoriteSong3]').val()],
+                favoriteAlbums:[$('[name=favoriteAlbum1]').val(),$('[name=favoriteAlbum2]').val(), $('[namefavoriteAlbume3]').val()],
+                website: $('[name=website]').val(),
+            };
+            console.log(userInfo)
+        }
     })
 
     Template.modalContent.events({
