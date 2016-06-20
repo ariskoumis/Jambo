@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { Session } from 'meteor/session'
+import { Session } from 'meteor/session';
 
 import './main.html';
 
@@ -10,7 +10,7 @@ if (Meteor.isClient) {
     Meteor.subscribe("userData")
     //Menu
     Template.menu.events({
-        "click #menuHome": function() {
+        "click #menu": function() {
             $(".ui.sidebar").sidebar('hide');
             console.log('hey')
         },
@@ -43,7 +43,10 @@ if (Meteor.isClient) {
         },
         "click #logoutButton": function() {
             Meteor.logout();
-        }
+        },
+        "click #alertTest": function() {
+            alertify.alert('<a href="javascript:showConfirm();">Show Confirm</a>');
+        }    
     });
 
     Template.main.helpers({

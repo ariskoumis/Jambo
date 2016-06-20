@@ -26,3 +26,8 @@ span {
 html.ios, html.ios body{
   height: 100%!important;
 }
+
+.editProfileHeader {
+	padding-top: 5px;
+	text-align: center;
+}

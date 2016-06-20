@@ -63,6 +63,7 @@ npm-mongo@1.4.44
 observe-sequence@1.0.12
 okland:camera-ui@0.0.2
 ordered-dict@1.0.8
+ovcharik:alertifyjs@1.6.1
 promise@0.7.2
 random@1.0.10
 rate-limit@1.0.5
