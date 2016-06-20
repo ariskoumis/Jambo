@@ -80,26 +80,21 @@ if (Meteor.isClient) {
     Template.login.onRendered(function(){
         $('#createAccountDiv').hide();
         $('#forgotPasswordDiv').hide();
-        $('#errorDiv').hide();
         $('#createAccountForm').validate();
         $('#loginForm').validate();
     })
 
     Template.login.events({
         "submit #loginForm": function(event) {
-            console.log('HEYHEY')
             event.preventDefault();
             var email = $('[name=loginEmail]').val();
             var password = $('[name=loginPassword]').val();
-            console.log('HEYYOU')
             Meteor.loginWithPassword(email,password, function(err) {
                 if (err) {
                     $('#loginDiv').transition('shake');
-                    $('#errorList').append('<li>'+err.reason+'</li>');
-                    $('#errorDiv').show()
+                    alertify.alert(err.reason);
                 }
             });
-            console.log('love debugging')
         },
         "submit #createAccountForm": function(event) {
             event.preventDefault();
@@ -113,14 +108,12 @@ if (Meteor.isClient) {
             Accounts.createUser(user, function(err) {
                 if (err) {
                     $('#createAccountDiv').transition('shake');
-                    $('#errorList').append('<li>'+err.reason+'</li>');
-                    $('#errorDiv').show()
+                    alertify.alert(err.reason)
                 } else {
                     Meteor.loginWithPassword(user.email,user.password, function(err) {
                         if (err) {
                             $('#createAccountDiv').transition('shake');
-                            $('#errorList').append('<li>'+err.reason+'</li>');
-                            $('#errorDiv').show()
+                            alertify.alert(err.reason);
                         } else {
                             $('.ui.basic.modal').modal('show');
                         }

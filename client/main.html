@@ -102,7 +102,7 @@
 </template>
 
 <template name="login">
-    <h1 class="align-center">Login</h1>
+    <h1 class="centeredHeader">Login</h1>
     <hr>
     <div id="loginDiv">
         <form id="loginForm" class="login ui form attached fluid">
@@ -121,9 +121,10 @@
                 </div>
             </div>
         </form>
-
-        <span><a href="javascript:" id="createAccount">Create Account</a></span> //
-        <span><a href="javascript:" id="forgotPassword">Forgot Password?</a></span>
+        <div class="centeredContent">
+            <span><a href="javascript:" id="createAccount">Create Account</a></span> //
+            <span><a href="javascript:" id="forgotPassword">Forgot Password?</a></span>
+        </div>
     </div>
 
     <div id="createAccountDiv">
@@ -160,14 +161,6 @@
                 </div>
             </div>
         </form>
-    </div>
-
-    <div class="ui error message" id="errorDiv">
-        <div class= "header">
-            There were some errors with your submission
-        </div>
-        <ul class="list" id="errorList">
-        </ul>
     </div>
 
 </template>
@@ -236,7 +229,7 @@
             <div class="side">
                 <div class="ui container">
                     <div class="ui content fluid card">
-                        <div class="editProfileHeader"><b>Edit Profile</b></div>
+                        <h1 class="centeredHeader">Edit Profile</h1>
                         <div class="ui form editProfileCard">
                             <div class="two fields">
                                 <div class="field">
