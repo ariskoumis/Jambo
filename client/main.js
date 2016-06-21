@@ -161,6 +161,7 @@ if (Meteor.isClient) {
         'click #editProfileSubmit': function() {
             console.log('im here')
             var userInfo = {
+                bio: $('[name=bio]').val(),
                 primaryInstrument: $('[name=primaryInstrument]').val(),
                 secondaryInstruments: $('[name=secondaryInstruments]').val().split(','),
                 skillLevel: $('[name=skillLevel]').val(),
