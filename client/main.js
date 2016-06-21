@@ -155,11 +155,7 @@ if (Meteor.isClient) {
         'click #flipCard': function() {
             $('.shape').shape('flip back')
         },
-        'click #flipCard2': function() {
-            $('.shape').shape('flip over')
-        },
         'click #editProfileSubmit': function() {
-            console.log('im here')
             var userInfo = {
                 bio: $('[name=bio]').val(),
                 primaryInstrument: $('[name=primaryInstrument]').val(),
@@ -174,7 +170,17 @@ if (Meteor.isClient) {
                 favoriteAlbums:[$('[name=favoriteAlbum1]').val(),$('[name=favoriteAlbum2]').val(), $('[namefavoriteAlbume3]').val()],
                 website: $('[name=website]').val(),
             };
-            Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.userInfo": userInfo}})
+            Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.userInfo": userInfo}}, function(err) {
+                if (err) {
+                    alertify.alert('Profile Change Unsuccessful', "Sorry, something went wrong :(")
+                } else {
+                    alertify.alert('Yay!', 'Changes saved!')
+                    $('.shape').shape('flip over')
+                }
+            })
+        },
+        'keypress input': function(e) {
+            Session.set('profileChangesSaved', false);
         }
     })
 
