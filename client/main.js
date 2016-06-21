@@ -169,7 +169,7 @@ if (Meteor.isClient) {
                 favoriteSongs: [$('[name=favoriteSong1]').val(),$('[name=favoriteSong2]').val(), $('[name=favoriteSong3]').val()],
                 favoriteAlbums:[$('[name=favoriteAlbum1]').val(),$('[name=favoriteAlbum2]').val(), $('[namefavoriteAlbume3]').val()],
                 website: $('[name=website]').val(),
-                matchable: true;
+                matchable: true,
             };
             Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.userInfo": userInfo}}, function(err) {
                 if (err) {
