@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
   // code to run on server at startup
-  TestDB = new Mongo.Collection('test');
+  usersDB = new Mongo.Collection('usersDB');
 
   Accounts.onCreateUser(function(options, user) {
   	user.firstName = options.firstName;

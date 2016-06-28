@@ -4,7 +4,7 @@ import { Session } from 'meteor/session';
 
 import './main.html';
 
-TestDB = new Mongo.Collection('test');
+usersDB = new Mongo.Collection('usersDB');
 
 String.prototype.capitalizeFirstLetter = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
@@ -199,7 +199,7 @@ if (Meteor.isClient) {
                 genres: $('[name=genres]').val().split(','),
                 musicalInfluences: [$('[name=musicalInfluence1]').val(),$('[name=musicalInfluence2]').val(), $('[name=musicalInfluence3]').val()],
                 favoriteSongs: [$('[name=favoriteSong1]').val(),$('[name=favoriteSong2]').val(), $('[name=favoriteSong3]').val()],
-                favoriteAlbums:[$('[name=favoriteAlbum1]').val(),$('[name=favoriteAlbum2]').val(), $('[namefavoriteAlbume3]').val()],
+                favoriteAlbums:[$('[name=favoriteAlbum1]').val(),$('[name=favoriteAlbum2]').val(), $('[namefavoriteAlbum3]').val()],
                 website: $('[name=website]').val(),
                 matchable: true,
             };
@@ -208,6 +208,7 @@ if (Meteor.isClient) {
                     alertify.alert('Profile Change Unsuccessful', "Sorry, something went wrong :(")
                 } else {
                     alertify.alert('Yay!', 'Changes saved!')
+                    usersDB.insert(Meteor.user())
                     $('.shape').shape('flip over')
                 }
             })
