@@ -212,10 +212,10 @@
                         </div>
                         <a class="header">{{firstName}}</a>
                         <div class="meta">
-                            <span class="date">Joined in 2013</span>
+                            <span>{{primaryInstrument}}</span>
                         </div>
                         <div class="description">
-                          Teaser is a proud Tiger who is in search of the Mystery Cat #HailSymphonia
+                          {{bio}}
                         </div>
                     </div>
                     <div class="extra content">
@@ -238,7 +238,7 @@
                             <div class="two fields">
                                 <div class="field">
                                     <label>Primary Instrument</label>
-                                    <div class="ui fluid search selection dropdown">
+                                    <div id="primaryInstrumentDropdown" class="ui fluid search selection dropdown">
                                         <input type="hidden" name="primaryInstrument" placeholder="Primary Instrument">
                                         <i class="dropdown icon"></i>
                                         <div class="default text">Select an Instrument</div>
@@ -262,7 +262,7 @@
                                 </div>
                                 <div class="field">
                                     <label>Secondary instruments</label>
-                                    <div class="ui fluid multiple search selection dropdown">
+                                    <div id="secondaryInstrumentsDropdown" class="ui fluid multiple search selection dropdown">
                                         <input type="hidden" name="secondaryInstruments" placeholder="Secondary Instruments">
                                         <i class="dropdown icon"></i>
                                         <div class="default text">Select Instruments</div>
@@ -288,7 +288,7 @@
                             <div class="two fields">
                                 <div class="field">
                                     <label>Skill level</label>
-                                    <div class="ui fluid selection dropdown">
+                                    <div id="skillDropdown" class="ui fluid selection dropdown">
                                         <input type="hidden" name="skillLevel" placeholder="Skill Level">
                                         <i class="dropdown icon"></i>
                                         <div class="default text">Select a Skill Level</div>
@@ -307,7 +307,7 @@
                             <div class="two fields">
                                 <div class="field">
                                     <label>Forming group for</label>
-                                    <div class="ui fluid selection dropdown">
+                                    <div id="groupsPurposeDropdown" class="ui fluid selection dropdown">
                                         <input type="hidden" name="groupsPurpose" placeholder="Group's Purpose">
                                         <i class="dropdown icon"></i>
                                         <div class="default text">Intention</div>
@@ -320,11 +320,12 @@
                                 </div>
                                 <div class="field">
                                     <label>Looking for people who play</label>
-                                    <div class="ui fluid multiple selection dropdown">
+                                    <div id="peopleWhoPlayDropdown" class="ui fluid multiple selection dropdown">
                                         <input type="hidden" name="peopleWhoPlay" placeholder="Instruments">
                                         <i class="dropdown icon"></i>
                                         <div class="default text">Select Instruments</div>
                                         <div class="menu"> 
+                                            <div class="item" data-value="anything">Anything!</div>
                                             <div class="item" data-value="bass">Bass</div>
                                             <div class="item" data-value="cello">Cello</div>
                                             <div class="item" data-value="drums">Drums</div>
@@ -346,7 +347,7 @@
                             <div class="two fields">
                                 <div class="field">
                                     <label>Genres</label>
-                                    <div class="ui fluid multiple selection dropdown">
+                                    <div id="genresDropdown" class="ui fluid multiple selection dropdown">
                                         <input type="hidden" name="genres" placeholder="Genres">
                                         <i class="dropdown icon"></i>
                                         <div class="default text">Genres</div>
@@ -416,7 +417,7 @@
                             </div>
                         </div>
                         <br>
-                        <button id="editProfileSubmit">Save Changes></button>
+                        <button class="ui button" id="editProfileSubmit">Save Changes></button>
                     </div>
                 </div>
             </div>

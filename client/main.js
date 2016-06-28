@@ -6,6 +6,10 @@ import './main.html';
 
 TestDB = new Mongo.Collection('test');
 
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 if (Meteor.isClient) {
     Meteor.subscribe("userData")
     //Menu
@@ -140,6 +144,26 @@ if (Meteor.isClient) {
         $('.ui.fluid.card').transition('bounce');
         $('.shape').shape();
         $('.ui.dropdown').dropdown();
+
+        //Inserting Existing Profile Info
+        $('[name=bio]').val(Meteor.user().profile.userInfo.bio);
+        $('#primaryInstrumentDropdown').dropdown('set selected',Meteor.user().profile.userInfo.primaryInstrument);
+        $('#secondaryInstrumentsDropdown').dropdown('set selected', Meteor.user().profile.userInfo.secondaryInstruments);
+        $('#skillDropdown').dropdown('set selected', Meteor.user().profile.userInfo.skillLevel);
+        $('[name=userRecording').val(Meteor.user().profile.userInfo.userRecording)
+        $('#groupsPurposeDropdown').dropdown('set selected', Meteor.user().profile.userInfo.groupsPurpose)
+        $('#peopleWhoPlayDropdown').dropdown('set selected', Meteor.user().profile.userInfo.peopleWhoPlay)
+        $('#genresDropdown').dropdown('set selected', Meteor.user().profile.userInfo.genres)
+        $('[name=musicalInfluence1]').val(Meteor.user().profile.userInfo.musicalInfluences[0])
+        $('[name=musicalInfluence2]').val(Meteor.user().profile.userInfo.musicalInfluences[1])
+        $('[name=musicalInfluence3]').val(Meteor.user().profile.userInfo.musicalInfluences[2])
+        $('[name=favoriteSong1]').val(Meteor.user().profile.userInfo.favoriteSongs[0])
+        $('[name=favoriteSong2]').val(Meteor.user().profile.userInfo.favoriteSongs[1])
+        $('[name=favoriteSong3]').val(Meteor.user().profile.userInfo.favoriteSongs[2])
+        $('[name=favoriteAlbum1]').val(Meteor.user().profile.userInfo.favoriteAlbums[0])
+        $('[name=favoriteAlbum2]').val(Meteor.user().profile.userInfo.favoriteAlbums[1])
+        $('[name=favoriteAlbum3]').val(Meteor.user().profile.userInfo.favoriteAlbums[2])
+        $('[name=website]').val(Meteor.user().profile.userInfo.website)
     });
 
     Template.profile.helpers({
@@ -149,6 +173,12 @@ if (Meteor.isClient) {
         'lastName': function() {
             return Meteor.user().lastName
         },
+        'primaryInstrument': function() {
+            return Meteor.user().profile.userInfo.primaryInstrument.capitalizeFirstLetter();
+        },
+        'bio': function() {
+            return Meteor.user().profile.userInfo.bio
+        }
     });
 
     Template.profile.events({
