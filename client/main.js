@@ -11,7 +11,8 @@ String.prototype.capitalizeFirstLetter = function() {
 }
 
 if (Meteor.isClient) {
-    Meteor.subscribe("userData")
+    Meteor.subscribe("matches");
+    Meteor.subscribe("userData");
     //Menu
     Template.menu.events({
         "click #menu": function() {
@@ -146,7 +147,7 @@ if (Meteor.isClient) {
         $('.ui.dropdown').dropdown();
 
         //Inserting Existing Profile Info
-        if (typeof Meteor.user().profile.userInfo != "undefined") {
+        if (typeof Meteor.user().profile != "undefined") {
             $('[name=bio]').val(Meteor.user().profile.userInfo.bio);
             $('#primaryInstrumentDropdown').dropdown('set selected',Meteor.user().profile.userInfo.primaryInstrument);
             $('#secondaryInstrumentsDropdown').dropdown('set selected', Meteor.user().profile.userInfo.secondaryInstruments);
@@ -176,10 +177,16 @@ if (Meteor.isClient) {
             return Meteor.user().lastName
         },
         'primaryInstrument': function() {
-            return Meteor.user().profile.userInfo.primaryInstrument.capitalizeFirstLetter();
+            if (typeof Meteor.user().profile != "undefined") {
+                return Meteor.user().profile.userInfo.primaryInstrument.capitalizeFirstLetter();
+            }
         },
         'bio': function() {
-            return Meteor.user().profile.userInfo.bio
+            if (typeof Meteor.user().profile != "undefined") {
+                return Meteor.user().profile.userInfo.bio
+            } else {
+                return 'Nothing here yet :(';
+            }
         }
     });
 
@@ -199,7 +206,7 @@ if (Meteor.isClient) {
                 genres: $('[name=genres]').val().split(','),
                 musicalInfluences: [$('[name=musicalInfluence1]').val(),$('[name=musicalInfluence2]').val(), $('[name=musicalInfluence3]').val()],
                 favoriteSongs: [$('[name=favoriteSong1]').val(),$('[name=favoriteSong2]').val(), $('[name=favoriteSong3]').val()],
-                favoriteAlbums:[$('[name=favoriteAlbum1]').val(),$('[name=favoriteAlbum2]').val(), $('[namefavoriteAlbum3]').val()],
+                favoriteAlbums:[$('[name=favoriteAlbum1]').val(),$('[name=favoriteAlbum2]').val(), $('[name=favoriteAlbum3]').val()],
                 website: $('[name=website]').val(),
                 matchable: true,
             };
@@ -208,7 +215,25 @@ if (Meteor.isClient) {
                     alertify.alert('Profile Change Unsuccessful', "Sorry, something went wrong :(")
                 } else {
                     alertify.alert('Yay!', 'Changes saved!')
-                    usersDB.insert(Meteor.user())
+                    usersDB.upsert({
+                        _id: Meteor.user()._id
+                    }, {
+                        $set: {
+                            userID: Meteor.user()._id,
+                            firstName: Meteor.user().firstName, 
+                            lastName: Meteor.user().lastName,
+                            primaryInstrument: Meteor.user().profile.userInfo.primaryInstrument,
+                            secondaryInstruments: Meteor.user().profile.userInfo.secondaryInstruments,
+                            skillLevel: Meteor.user().profile.userInfo.skillLevel,
+                            userRecording: Meteor.user().profile.userInfo.userRecording,
+                            groupsPurpose: Meteor.user().profile.userInfo.groupsPurpose,
+                            peopleWhoPlay: Meteor.user().profile.userInfo.peopleWhoPlay,
+                            genres: Meteor.user().profile.userInfo.genres,
+                            musicalInfluences: Meteor.user().profile.userInfo.musicalInfluences,
+                            favoriteAlbums: Meteor.user().profile.userInfo.favoriteAlbums,
+                            website: Meteor.user().profile.userInfo.website,
+                        }
+                    })
                     $('.shape').shape('flip over')
                 }
             })
@@ -227,6 +252,12 @@ if (Meteor.isClient) {
         "click #closeModal": function() {
             console.log('this isnt')
             $('.ui.basic.modal').modal('hide');
+        }
+    })
+
+    Template.matches.helpers({
+        'matchedUsers': function() {
+            return usersDB.find({primaryInstrument:'bass'}).fetch()
         }
     })
 }
