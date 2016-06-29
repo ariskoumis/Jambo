@@ -13,11 +13,26 @@ String.prototype.capitalizeFirstLetter = function() {
 if (Meteor.isClient) {
     Meteor.subscribe("matches");
     Meteor.subscribe("userData");
-    //Menu
+
+    //Main Template
+    Template.main.events({
+        "click #sideMenu": function() {
+            $(".ui.sidebar").sidebar('show')
+        },
+        "click #cameraButton": function() {
+            MeteorCameraUI.getPicture();
+        },
+        "click #logoutButton": function() {
+            Meteor.logout();
+        },
+        "click #alertTest": function() {
+            alertify.alert('<a href="javascript:showConfirm();">Show Confirm</a>');
+        }    
+    });
+
     Template.menu.events({
         "click #menu": function() {
             $(".ui.sidebar").sidebar('hide');
-            console.log('hey')
         },
         "click #menuInbox": function() {
             $(".ui.sidebar").sidebar('hide');
@@ -35,50 +50,6 @@ if (Meteor.isClient) {
             }
             string = string.charAt(0).toUpperCase() + string.slice(1); 
             return string
-        }
-    })
-
-    //Page
-    Template.main.events({
-        "click #sideMenu": function() {
-            $(".ui.sidebar").sidebar('show')
-        },
-        "click #testButton": function() {
-            MeteorCameraUI.getPicture();
-        },
-        "click #logoutButton": function() {
-            Meteor.logout();
-        },
-        "click #alertTest": function() {
-            alertify.alert('<a href="javascript:showConfirm();">Show Confirm</a>');
-        }    
-    });
-
-    Template.main.helpers({
-
-    });
-
-    //Form
-    Template.edit_profile.events({
-
-    });
-
-    Template.database_test.events({
-        "click #dbTestSubmit": function() {
-            var user = {
-                name: $('#dbName').val(),
-                username: $('#dbUsername').val(),
-                email: $('#dbEmail').val(),
-            };
-            TestDB.insert(user)
-            console.log('submitted', user)
-        },
-    })
-
-
-    Template.database_test.helpers({
-        'users': function() {
-            return TestDB.find();
         }
     })
 
@@ -246,12 +217,10 @@ if (Meteor.isClient) {
 
     Template.modalContent.events({
         "click #modalToProfile": function() {
-            console.log('this is wokring')
             FlowRouter.go('/profile')
             $('.ui.basic.modal').modal('hide');
         },
         "click #closeModal": function() {
-            console.log('this isnt')
             $('.ui.basic.modal').modal('hide');
         }
     })
@@ -271,8 +240,13 @@ if (Meteor.isClient) {
                     matchArray.push(match);
                 }
             })
-            console.log(matchArray)
             return matchArray
         }
     })
+
+    Template.modalContent.helpers({
+        'userFirst': function() {
+            return Meteor.user().firstName;
+        }
+    });
 }

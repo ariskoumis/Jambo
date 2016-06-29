@@ -19,11 +19,8 @@
 
 
 <template name="home">
-    <a href="/edit_profile" class="fluid ui button">Edit Profile</a>
-    <a href="/database_test" class="fluid ui button">Database Test</a>
-    <button class="fluid ui button" id="testButton">HEY</button>
-    <button class="fluid ui button" id="logoutButton">LOGOUT</button>
-    <button class="fluid ui button" id="alertTest">ALERT</button>
+    <button class="fluid ui button" id="cameraButton">Camera</button>
+    <button class="fluid ui button" id="logoutButton">Logout</button>
 </template>
 
 <template name="menu">
@@ -59,49 +56,8 @@
     <br>
 </template>
 
-<template name="edit_profile">
-    <span class="nameAndPic">
-        <img class="ui small image" src="http://www.umcmission.org/Images/UserUploadedImages/158/profile%20generic.jpg">
-        <h1>
-            {{firstName}}
-            {{lastName}}
-        </h1>
-    </span>
-</template>
-
 <template name='inbox'>
     <p>Dis empty rn</p>
-</template>
-
-<template name='database_test'>
-    <div class="ui one column stackable center aligned grid">
-        <div class="column twelve wide">
-            <h1>DB Test</h1>
-                <div class="ui input">
-                    <input id="dbName" type="text" placeholder="Your Name">
-                </div>
-                <br>
-                    <div class="ui input">
-                        <input id="dbUsername" type="text" placeholder="Username">
-                    </div>
-                <br>
-                <div class="ui input">
-                    <input id="dbEmail" type="text" placeholder="Email Address">
-                </div>
-                <br>
-            <div id="dbTestSubmit" class="ui animated button" tabindex="0">
-                <div class="visible content">Submit</div>
-                <div class="hidden content">
-                    <i class="right arrow icon"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-    <ul>
-    {{#each users}}
-        <li>{{name}}, {{username}}, {{email}} </li>
-    {{/each}}
-    </ul>
 </template>
 
 <template name="login">
@@ -184,7 +140,7 @@
         <i class="music icon"></i>
     </div>
     <div class="description">
-      <p>Hey there! To get started with Jambo, tell us about yourself by adding more details to your profile!</p>
+      <p>Hey there, {{userFirst}}! To get started with Jambo, tell us about yourself by adding more details to your profile!</p>
     </div>
     </div>
     <div class="actions">
@@ -230,198 +186,196 @@
                 </div>
             </div>
             <div class="side">
-                <div class="ui container">
-                    <div class="ui content fluid card">
-                        <div class="centeredHeader"><strong>Edit Profile</strong></div>
-                        <div class="ui form editProfileCard">
+                <div class="ui content fluid card">
+                    <div class="centeredHeader"><strong>Edit Profile</strong></div>
+                    <div class="ui form editProfileCard">
+                        <div class="field">
+                            <label>Bio</label>
+                            <textarea name="bio" rows="4" placeholder="Tell us about yourself!"></textarea>
+                        </div>
+                        <div class="two fields">
                             <div class="field">
-                                <label>Bio</label>
-                                <textarea name="bio" rows="4" placeholder="Tell us about yourself!"></textarea>
-                            </div>
-                            <div class="two fields">
-                                <div class="field">
-                                    <label>Primary Instrument</label>
-                                    <div id="primaryInstrumentDropdown" class="ui fluid search selection dropdown">
-                                        <input type="hidden" name="primaryInstrument" placeholder="Primary Instrument">
-                                        <i class="dropdown icon"></i>
-                                        <div class="default text">Select an Instrument</div>
-                                        <div class="menu"> 
-                                            <div class="item" data-value="bass">Bass</div>
-                                            <div class="item" data-value="cello">Cello</div>
-                                            <div class="item" data-value="drums">Drums</div>
-                                            <div class="item" data-value="flute">Flute</div>
-                                            <div class="item" data-value="guitar">Guitar</div>
-                                            <div class="item" data-value="marimbaOrVibraphone">Marimba/Vibraphone</div>
-                                            <div class="item" data-value="oboe">Oboe</div>
-                                            <div class="item" data-value="piano">Piano</div>
-                                            <div class="item" data-value="saxaphone">Saxophone</div>
-                                            <div class="item" data-value="trombone">Trombone</div>
-                                            <div class="item" data-value="trumpet">Trumpet</div>
-                                            <div class="item" data-value="tuba">Tuba</div>
-                                            <div class="item" data-value="vocals">Vocals</div>
-                                            <div class="item" data-value="violin">Violin</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label>Secondary instruments</label>
-                                    <div id="secondaryInstrumentsDropdown" class="ui fluid multiple search selection dropdown">
-                                        <input type="hidden" name="secondaryInstruments" placeholder="Secondary Instruments">
-                                        <i class="dropdown icon"></i>
-                                        <div class="default text">Select Instruments</div>
-                                        <div class="menu"> 
-                                            <div class="item" data-value="bass">Bass</div>
-                                            <div class="item" data-value="cello">Cello</div>
-                                            <div class="item" data-value="drums">Drums</div>
-                                            <div class="item" data-value="flute">Flute</div>
-                                            <div class="item" data-value="guitar">Guitar</div>
-                                            <div class="item" data-value="marimbaOrVibraphone">Marimba/Vibraphone</div>
-                                            <div class="item" data-value="oboe">Oboe</div>
-                                            <div class="item" data-value="piano">Piano</div>
-                                            <div class="item" data-value="saxaphone">Saxophone</div>
-                                            <div class="item" data-value="trombone">Trombone</div>
-                                            <div class="item" data-value="trumpet">Trumpet</div>
-                                            <div class="item" data-value="tuba">Tuba</div>
-                                            <div class="item" data-value="vocals">Vocals</div>
-                                            <div class="item" data-value="violin">Violin</div>
-                                        </div>
+                                <label>Primary Instrument</label>
+                                <div id="primaryInstrumentDropdown" class="ui fluid search selection dropdown">
+                                    <input type="hidden" name="primaryInstrument" placeholder="Primary Instrument">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Select an Instrument</div>
+                                    <div class="menu"> 
+                                        <div class="item" data-value="bass">Bass</div>
+                                        <div class="item" data-value="cello">Cello</div>
+                                        <div class="item" data-value="drums">Drums</div>
+                                        <div class="item" data-value="flute">Flute</div>
+                                        <div class="item" data-value="guitar">Guitar</div>
+                                        <div class="item" data-value="marimbaOrVibraphone">Marimba/Vibraphone</div>
+                                        <div class="item" data-value="oboe">Oboe</div>
+                                        <div class="item" data-value="piano">Piano</div>
+                                        <div class="item" data-value="saxaphone">Saxophone</div>
+                                        <div class="item" data-value="trombone">Trombone</div>
+                                        <div class="item" data-value="trumpet">Trumpet</div>
+                                        <div class="item" data-value="tuba">Tuba</div>
+                                        <div class="item" data-value="vocals">Vocals</div>
+                                        <div class="item" data-value="violin">Violin</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="two fields">
-                                <div class="field">
-                                    <label>Skill level</label>
-                                    <div id="skillDropdown" class="ui fluid selection dropdown">
-                                        <input type="hidden" name="skillLevel" placeholder="Skill Level">
-                                        <i class="dropdown icon"></i>
-                                        <div class="default text">Select a Skill Level</div>
-                                        <div class="menu"> 
-                                            <div class="item" data-value="beginner"><i class="icons"><i class="blue child icon"><i class="corner yellow music icon"></i></i></i>Beginner</div>
-                                            <div class="item" data-value="intermediate"><i class="yellow star half icon"></i>Intermediate</div>
-                                            <div class="item" data-value="advanced"><i class="yellow star icon"></i>Advanced</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label>Link to you Playing</label>
-                                    <input type="text" name="userRecording" placeholder="User Recording">
-                                </div>
-                            </div>
-                            <div class="two fields">
-                                <div class="field">
-                                    <label>Forming group for</label>
-                                    <div id="groupsPurposeDropdown" class="ui fluid selection dropdown">
-                                        <input type="hidden" name="groupsPurpose" placeholder="Group's Purpose">
-                                        <i class="dropdown icon"></i>
-                                        <div class="default text">Intention</div>
-                                        <div class="menu"> 
-                                            <div class="item" data-value="jam"><i class="smile icon"></i>Casual Jam</div>
-                                            <div class="item" data-value="band"><i class="users icon"></i>Band Formation</div>
-                                            <div class="item" data-value="gig"><i class="suitcase icon"></i>Professional Gig</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label>Looking for people who play</label>
-                                    <div id="peopleWhoPlayDropdown" class="ui fluid multiple selection dropdown">
-                                        <input type="hidden" name="peopleWhoPlay" placeholder="Instruments">
-                                        <i class="dropdown icon"></i>
-                                        <div class="default text">Select Instruments</div>
-                                        <div class="menu"> 
-                                            <div class="item" data-value="anything">Anything!</div>
-                                            <div class="item" data-value="bass">Bass</div>
-                                            <div class="item" data-value="cello">Cello</div>
-                                            <div class="item" data-value="drums">Drums</div>
-                                            <div class="item" data-value="flute">Flute</div>
-                                            <div class="item" data-value="guitar">Guitar</div>
-                                            <div class="item" data-value="marimbaOrVibraphone">Marimba/Vibraphone</div>
-                                            <div class="item" data-value="oboe">Oboe</div>
-                                            <div class="item" data-value="piano">Piano</div>
-                                            <div class="item" data-value="saxaphone">Saxophone</div>
-                                            <div class="item" data-value="trombone">Trombone</div>
-                                            <div class="item" data-value="trumpet">Trumpet</div>
-                                            <div class="item" data-value="tuba">Tuba</div>
-                                            <div class="item" data-value="vocals">Vocals</div>
-                                            <div class="item" data-value="violin">Violin</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="two fields">
-                                <div class="field">
-                                    <label>Genres</label>
-                                    <div id="genresDropdown" class="ui fluid multiple selection dropdown">
-                                        <input type="hidden" name="genres" placeholder="Genres">
-                                        <i class="dropdown icon"></i>
-                                        <div class="default text">Genres</div>
-                                        <div class="menu"> 
-                                            <div class="item" data-value="alternative">Alternative</div>
-                                            <div class="item" data-value="blues">Blues</div>
-                                            <div class="item" data-value="classical">Classical</div>
-                                            <div class="item" data-value="country">Country</div>
-                                            <div class="item" data-value="dance">Dance (EDM)</div>
-                                            <div class="item" data-value="electronic">Electronic</div>
-                                            <div class="item" data-value="hipHopRap">Hip-Hop/Rap</div>
-                                            <div class="item" data-value="Indie">Indie</div>
-                                            <div class="item" data-value="Pop">Pop</div>
-                                            <div class="item" data-value="Jazz">Jazz</div>
-                                            <div class="item" data-value="Latin">Latin</div>
-                                            <div class="item" data-value="NewAge">NewAge</div>
-                                            <div class="item" data-value="Opera">Opera</div>
-                                            <div class="item" data-value="Pop">Pop</div>
-                                            <div class="item" data-value="RnBSoul">R&B/Soul</div>
-                                            <div class="item" data-value="Reggae">Reggae</div>
-                                            <div class="item" data-value="Rock">Rock</div>
-                                            <div class="item" data-value="Singer">Singer</div>
-                                            <div class="item" data-value="World">World</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label>Musical Influences</label>
-                                    <input class="ui fluid input attached segment topTextInput" type="text" name="musicalInfluence1" placeholder="Miles Davis">
-                                    <input class="ui fluid input attached segment middleTextInput" type="text" name="musicalInfluence2" placeholder="Def Leppard">
-                                    <input class="ui fluid input attached segment bottomTextInput" type="text" name="musicalInfluence3" placeholder="MF Doom">
-                                </div>
-                            </div>
-                            <div class="two fields">
-                                <div class="field">
-                                    <label>Favorite Songs</label>
-                                    <input class="ui fluid input attached segment" type="text" name="favoriteSong1" placeholder="D'Angelo - Really Love">
-                                    <input class="ui fluid input attached segment" type="text" name="favoriteSong2" placeholder="Rick Astley - Never Gonna Give You Up">
-                                    <input class="ui fluid input attached segment" type="text" name="favoriteSong3" placeholder="Radiohead - Creep">
-                                </div>
-                                <div class="field">
-                                    <label>Favorite Albums</label>
-                                    <input class="ui fluid input attached segment" type="text" name="favoriteAlbum1" placeholder="Marvin Gaye - What's Going On">
-                                    <input class="ui fluid input attached segment" type="text" name="favoriteAlbum2" placeholder="Cannonball Adderly - Something Else">
-                                    <input class="ui fluid input attached segment" type="text" name="favoriteAlbum3" placeholder="Prince - Purple Rain">
-                                </div>
-                            </div>
-                            <div class="two fields">
-                                <div class="field">
-                                    <label>Website</label>
-                                    <input type="text" name="website" placeholder="Soundcloud, Bandcamp, Youtube, etc.">
-                                </div>
-                                <div class="field">
-                                    <label>Search Radius (Miles)</label>
-                                    <div class="ui fluid selection dropdown">
-                                        <input type="hidden" name="searchRadius" value="50" placeholder="Search Radius">
-                                        <i class="dropdown icon"></i>
-                                        <div class="default text">Distance</div>
-                                        <div class="menu"> 
-                                            <div class="item" data-value="5">5</div>
-                                            <div class="item" data-value="10">10</div>
-                                            <div class="item" data-value="25">25</div>
-                                            <div class="item" data-value="50">50</div>
-                                        </div>
+                            <div class="field">
+                                <label>Secondary instruments</label>
+                                <div id="secondaryInstrumentsDropdown" class="ui fluid multiple search selection dropdown">
+                                    <input type="hidden" name="secondaryInstruments" placeholder="Secondary Instruments">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Select Instruments</div>
+                                    <div class="menu"> 
+                                        <div class="item" data-value="bass">Bass</div>
+                                        <div class="item" data-value="cello">Cello</div>
+                                        <div class="item" data-value="drums">Drums</div>
+                                        <div class="item" data-value="flute">Flute</div>
+                                        <div class="item" data-value="guitar">Guitar</div>
+                                        <div class="item" data-value="marimbaOrVibraphone">Marimba/Vibraphone</div>
+                                        <div class="item" data-value="oboe">Oboe</div>
+                                        <div class="item" data-value="piano">Piano</div>
+                                        <div class="item" data-value="saxaphone">Saxophone</div>
+                                        <div class="item" data-value="trombone">Trombone</div>
+                                        <div class="item" data-value="trumpet">Trumpet</div>
+                                        <div class="item" data-value="tuba">Tuba</div>
+                                        <div class="item" data-value="vocals">Vocals</div>
+                                        <div class="item" data-value="violin">Violin</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        <button class="ui button" id="editProfileSubmit">Save Changes></button>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Skill level</label>
+                                <div id="skillDropdown" class="ui fluid selection dropdown">
+                                    <input type="hidden" name="skillLevel" placeholder="Skill Level">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Select a Skill Level</div>
+                                    <div class="menu"> 
+                                        <div class="item" data-value="beginner"><i class="icons"><i class="blue child icon"><i class="corner yellow music icon"></i></i></i>Beginner</div>
+                                        <div class="item" data-value="intermediate"><i class="yellow star half icon"></i>Intermediate</div>
+                                        <div class="item" data-value="advanced"><i class="yellow star icon"></i>Advanced</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Link to you Playing</label>
+                                <input type="text" name="userRecording" placeholder="User Recording">
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Forming group for</label>
+                                <div id="groupsPurposeDropdown" class="ui fluid selection dropdown">
+                                    <input type="hidden" name="groupsPurpose" placeholder="Group's Purpose">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Intention</div>
+                                    <div class="menu"> 
+                                        <div class="item" data-value="jam"><i class="smile icon"></i>Casual Jam</div>
+                                        <div class="item" data-value="band"><i class="users icon"></i>Band Formation</div>
+                                        <div class="item" data-value="gig"><i class="suitcase icon"></i>Professional Gig</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Looking for people who play</label>
+                                <div id="peopleWhoPlayDropdown" class="ui fluid multiple selection dropdown">
+                                    <input type="hidden" name="peopleWhoPlay" placeholder="Instruments">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Select Instruments</div>
+                                    <div class="menu"> 
+                                        <div class="item" data-value="anything">Anything!</div>
+                                        <div class="item" data-value="bass">Bass</div>
+                                        <div class="item" data-value="cello">Cello</div>
+                                        <div class="item" data-value="drums">Drums</div>
+                                        <div class="item" data-value="flute">Flute</div>
+                                        <div class="item" data-value="guitar">Guitar</div>
+                                        <div class="item" data-value="marimbaOrVibraphone">Marimba/Vibraphone</div>
+                                        <div class="item" data-value="oboe">Oboe</div>
+                                        <div class="item" data-value="piano">Piano</div>
+                                        <div class="item" data-value="saxaphone">Saxophone</div>
+                                        <div class="item" data-value="trombone">Trombone</div>
+                                        <div class="item" data-value="trumpet">Trumpet</div>
+                                        <div class="item" data-value="tuba">Tuba</div>
+                                        <div class="item" data-value="vocals">Vocals</div>
+                                        <div class="item" data-value="violin">Violin</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Genres</label>
+                                <div id="genresDropdown" class="ui fluid multiple selection dropdown">
+                                    <input type="hidden" name="genres" placeholder="Genres">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Genres</div>
+                                    <div class="menu"> 
+                                        <div class="item" data-value="alternative">Alternative</div>
+                                        <div class="item" data-value="blues">Blues</div>
+                                        <div class="item" data-value="classical">Classical</div>
+                                        <div class="item" data-value="country">Country</div>
+                                        <div class="item" data-value="dance">Dance (EDM)</div>
+                                        <div class="item" data-value="electronic">Electronic</div>
+                                        <div class="item" data-value="hipHopRap">Hip-Hop/Rap</div>
+                                        <div class="item" data-value="Indie">Indie</div>
+                                        <div class="item" data-value="Pop">Pop</div>
+                                        <div class="item" data-value="Jazz">Jazz</div>
+                                        <div class="item" data-value="Latin">Latin</div>
+                                        <div class="item" data-value="NewAge">NewAge</div>
+                                        <div class="item" data-value="Opera">Opera</div>
+                                        <div class="item" data-value="Pop">Pop</div>
+                                        <div class="item" data-value="RnBSoul">R&B/Soul</div>
+                                        <div class="item" data-value="Reggae">Reggae</div>
+                                        <div class="item" data-value="Rock">Rock</div>
+                                        <div class="item" data-value="Singer">Singer</div>
+                                        <div class="item" data-value="World">World</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Musical Influences</label>
+                                <input class="ui fluid input attached segment topTextInput" type="text" name="musicalInfluence1" placeholder="Miles Davis">
+                                <input class="ui fluid input attached segment middleTextInput" type="text" name="musicalInfluence2" placeholder="Def Leppard">
+                                <input class="ui fluid input attached segment bottomTextInput" type="text" name="musicalInfluence3" placeholder="MF Doom">
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Favorite Songs</label>
+                                <input class="ui fluid input attached segment" type="text" name="favoriteSong1" placeholder="D'Angelo - Really Love">
+                                <input class="ui fluid input attached segment" type="text" name="favoriteSong2" placeholder="Rick Astley - Never Gonna Give You Up">
+                                <input class="ui fluid input attached segment" type="text" name="favoriteSong3" placeholder="Radiohead - Creep">
+                            </div>
+                            <div class="field">
+                                <label>Favorite Albums</label>
+                                <input class="ui fluid input attached segment" type="text" name="favoriteAlbum1" placeholder="Marvin Gaye - What's Going On">
+                                <input class="ui fluid input attached segment" type="text" name="favoriteAlbum2" placeholder="Cannonball Adderly - Something Else">
+                                <input class="ui fluid input attached segment" type="text" name="favoriteAlbum3" placeholder="Prince - Purple Rain">
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Website</label>
+                                <input type="text" name="website" placeholder="Soundcloud, Bandcamp, Youtube, etc.">
+                            </div>
+                            <div class="field">
+                                <label>Search Radius (Miles)</label>
+                                <div class="ui fluid selection dropdown">
+                                    <input type="hidden" name="searchRadius" value="50" placeholder="Search Radius">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Distance</div>
+                                    <div class="menu"> 
+                                        <div class="item" data-value="5">5</div>
+                                        <div class="item" data-value="10">10</div>
+                                        <div class="item" data-value="25">25</div>
+                                        <div class="item" data-value="50">50</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <br>
+                    <button class="ui button" id="editProfileSubmit">Save Changes></button>
                 </div>
             </div>
         </div>
