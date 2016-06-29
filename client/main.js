@@ -214,7 +214,6 @@ if (Meteor.isClient) {
                 if (err) {
                     alertify.alert('Profile Change Unsuccessful', "Sorry, something went wrong :(")
                 } else {
-                    alertify.alert('Yay!', 'Changes saved!')
                     usersDB.upsert({
                         _id: Meteor.user()._id
                     }, {
@@ -234,7 +233,9 @@ if (Meteor.isClient) {
                             website: Meteor.user().profile.userInfo.website,
                         }
                     })
-                    $('.shape').shape('flip over')
+                    alertify.alert('Yay!', 'Changes saved!', function() {
+                        $('.shape').shape('flip over')
+                    })
                 }
             })
         },
