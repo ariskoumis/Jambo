@@ -257,7 +257,21 @@ if (Meteor.isClient) {
 
     Template.matches.helpers({
         'matchedUsers': function() {
-            return usersDB.find({primaryInstrument:'bass'}).fetch()
+            var initialMatchArray = []
+            var matchArray = []
+
+            //Matching Algorithim - currently very hacky and inefficent, will return to this later.
+            //Need to grab users whose secondary instruments are match, currently only grabbing primary instrument.
+            for (var i=0; i<Meteor.user().profile.userInfo.peopleWhoPlay.length; i++) {
+                initialMatchArray = initialMatchArray.concat(usersDB.find({primaryInstrument:Meteor.user().profile.userInfo.peopleWhoPlay[i]}).fetch())
+            }
+            initialMatchArray.forEach(function(match) {
+                if (match._id != Meteor.user()._id) {
+                    matchArray.push(match);
+                }
+            })
+            console.log(matchArray)
+            return matchArray
         }
     })
 }
