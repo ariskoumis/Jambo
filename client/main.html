@@ -21,6 +21,7 @@
 <template name="home">
     <button class="fluid ui button" id="cameraButton">Camera</button>
     <button class="fluid ui button" id="logoutButton">Logout</button>
+    {{> s3_tester}}
 </template>
 
 <template name="menu">
@@ -386,6 +387,15 @@
     {{#each matchedUsers}}
         OH YEAH
         <br>
+    {{/each}}
+</template>
+
+<template name="s3_tester">
+    <input type="file" class="file_bag">
+    <button class="upload">Upload</button>
+
+    {{#each files}}
+        <p>{{percent_uploaded}}</p>
     {{/each}}
 </template>
 
