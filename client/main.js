@@ -251,7 +251,7 @@ if (Meteor.isClient) {
     });
 
     Template.s3_tester.events({
-        "click button.upload": function(){
+        "click .upload": function(){
             var files = $("input.file_bag")[0].files
 
             S3.upload({

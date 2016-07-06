@@ -190,9 +190,15 @@
                 <div class="ui content fluid card">
                     <div class="centeredHeader"><strong>Edit Profile</strong></div>
                     <div class="ui form editProfileCard">
-                        <div class="field">
-                            <label>Bio</label>
-                            <textarea name="bio" rows="4" placeholder="Tell us about yourself!"></textarea>
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Bio</label>
+                                <textarea name="bio" rows="4" placeholder="Tell us about yourself!"></textarea>
+                            </div>
+                            <div class="field">
+                                <label>Profile Picture</label>
+                                {{> s3_tester}}
+                            </div> 
                         </div>
                         <div class="two fields">
                             <div class="field">
