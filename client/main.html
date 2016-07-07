@@ -397,11 +397,12 @@
 </template>
 
 <template name="s3_tester">
-    <input type="file" class="file_bag">
-    <button class="upload">Upload</button>
-
-    {{#each files}}
-        <p>{{percent_uploaded}}</p>
-    {{/each}}
+    <input id="profilePictureUpload" type="file" class="file_bag">
+    <button class="fluid ui button" id="uploadProxy">Upload Image</button>
+    <div class="ui active centered inline loader" id="pictureUploadLoader"></div>
+    <div class="centeredContent" id="checkSuccess">
+        Upload Successful!
+        <i class="large checkmark icon"></i>
+    </div>
 </template>
 

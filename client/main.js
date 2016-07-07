@@ -250,15 +250,31 @@ if (Meteor.isClient) {
         }
     });
 
-    Template.s3_tester.events({
-        "click .upload": function(){
-            var files = $("input.file_bag")[0].files
+    Template.s3_tester.onRendered(function() {
+        $("#profilePictureUpload").hide();
+        $("#pictureUploadLoader").hide();
+        $("#checkSuccess").hide();
+    });
 
+    Template.s3_tester.events({
+        //Styling of default upload input is ugly, using own button to click the file selector button
+        "click #uploadProxy": function() {
+            $("#profilePictureUpload").click();
+        },
+        //As soon as an image is selected, it is uploaded to database.
+        'change input[type=file]': function (e, tmpl) {
+            var files = $("input.file_bag")[0].files
+            $("#uploadProxy").hide();
+            $("#pictureUploadLoader").show()
             S3.upload({
                     files:files,
                     path:"profilePictures"
                 },function(e,r){
-                    console.log(r);
+                    if (r) {
+                        $("#pictureUploadLoader").hide()
+                        $("#checkSuccess").show()
+                        $("#checkSuccess").transition('tada');
+                    }
             });
         }
     });

@@ -42,3 +42,7 @@ html.ios, html.ios body{
 	padding-bottom:20px;
 	padding-top:0;
 }
+
+.profilePictureUpload {
+	opacity: 0;
+}
