@@ -114,8 +114,8 @@ if (Meteor.isClient) {
 
     Template.profile.onRendered(function() {
         $('.ui.fluid.card').transition('bounce');
-        $('.shape').shape();
-        $('.ui.dropdown').dropdown();
+        this.$('.shape').shape();
+        this.$('.ui.dropdown').dropdown();
 
         //Inserting Existing Profile Info
         if (typeof Meteor.user().profile != "undefined") {
@@ -158,6 +158,9 @@ if (Meteor.isClient) {
             } else {
                 return 'Nothing here yet :(';
             }
+        },
+        'profilePicture': function() {
+            return Meteor.user().profile.userInfo.profilePicture;
         }
     });
 
@@ -165,6 +168,9 @@ if (Meteor.isClient) {
         'click #flipCard': function() {
             $('.shape').shape('flip back')
         },
+        // 'click .ui.dropdown': function() {
+        //     $('.ui.dropdown').focus();
+        // },
         'click #editProfileSubmit': function() {
             var userInfo = {
                 bio: $('[name=bio]').val(),
@@ -271,9 +277,11 @@ if (Meteor.isClient) {
                     path:"profilePictures"
                 },function(e,r){
                     if (r) {
+                        Meteor.users.update({_id:Meteor.user()._id}, {$set: {"profile.userInfo.profilePicture":r.url}});
+                        console.log(r)
                         $("#pictureUploadLoader").hide()
                         $("#checkSuccess").show()
-                        $("#checkSuccess").transition('tada');
+                        $("#checkSuccess").transition('tada')
                     }
             });
         }
