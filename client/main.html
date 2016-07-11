@@ -21,8 +21,7 @@
 <template name="home">
     <button class="fluid ui button" id="cameraButton">Camera</button>
     <button class="fluid ui button" id="logoutButton">Logout</button>
-    {{> s3_tester}}
-    {{> hello}}
+    {{> imageUpload}}
 </template>
 
 <template name="menu">
@@ -198,7 +197,7 @@
                             </div>
                             <div class="field">
                                 <label>Profile Picture</label>
-                                {{> s3_tester}}
+                                {{> imageUpload}}
                             </div> 
                         </div>
                         <div class="two fields">
@@ -397,16 +396,16 @@
     {{/each}}
 </template>
 
-<template name="s3_tester">
-    <input id="profilePictureUpload" type="file" class="file_bag">
+<!-- <template name="s3_tester">
+    <input id="imageUpload" type="file" class="file_bag">
     <button class="fluid ui button" id="uploadProxy">Upload Image</button>
     <div class="ui active centered inline loader" id="pictureUploadLoader"></div>
     <div class="centeredContent" id="checkSuccess">
         Upload Successful!
         <i class="large checkmark icon"></i>
     </div>
-</template>
+</template> -->
 
-<template name="hello">
+<template name="imageUpload">
   <input type="file" />
 </template>

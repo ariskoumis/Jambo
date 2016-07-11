@@ -6,12 +6,12 @@ Meteor.startup(() => {
     // code to run on server at startup
     usersDB = new Mongo.Collection('usersDB');
 
-    S3.config = {
-        key: keys.aws.key,
-        secret: keys.aws.secret,
-        bucket: 'jamboapp',
-        region:"us-west-1"
-    };
+    // S3.config = {
+    //     key: keys.aws.key,
+    //     secret: keys.aws.secret,
+    //     bucket: 'jamboapp',
+    //     region:"us-west-1"
+    // };
 
     Accounts.onCreateUser(function(options, user) {
         user.firstName = options.firstName;

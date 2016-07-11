@@ -261,44 +261,44 @@ if (Meteor.isClient) {
         }
     });
 
-    Template.s3_tester.onRendered(function() {
-        $("#profilePictureUpload").hide();
-        $("#pictureUploadLoader").hide();
-        $("#checkSuccess").hide();
-    });
+    // Template.s3_tester.onRendered(function() {
+    //     $("#profilePictureUpload").hide();
+    //     $("#pictureUploadLoader").hide();
+    //     $("#checkSuccess").hide();
+    // });
 
-    Template.s3_tester.events({
-        //Styling of default upload input is ugly, using own button to click the file selector button
-        "click #uploadProxy": function() {
-            $("#profilePictureUpload").click();
-        },
-        //As soon as an image is selected, it is uploaded to database.
-        'change input[type=file]': function (e, tmpl) {
-            var files = $("input.file_bag")[0].files
-            $("#uploadProxy").hide();
-            $("#pictureUploadLoader").show()
-            S3.upload({
-                    files:files,
-                    path:"profilePictures"
-                },function(e,r){
-                    if (r) {
-                        Meteor.users.update({_id:Meteor.user()._id}, {$set: {"profile.userInfo.profilePicture":r.url}});
-                        console.log(r)
-                        $("#pictureUploadLoader").hide()
-                        $("#checkSuccess").show()
-                        $("#checkSuccess").transition('tada')
-                    }
-            });
-        }
-    });
+    // Template.s3_tester.events({
+    //     //Styling of default upload input is ugly, using own button to click the file selector button
+    //     "click #uploadProxy": function() {
+    //         $("#profilePictureUpload").click();
+    //     },
+    //     //As soon as an image is selected, it is uploaded to database.
+    //     'change input[type=file]': function (e, tmpl) {
+    //         var files = $("input.file_bag")[0].files
+    //         $("#uploadProxy").hide();
+    //         $("#pictureUploadLoader").show()
+    //         S3.upload({
+    //                 files:files,
+    //                 path:"profilePictures"
+    //             },function(e,r){
+    //                 if (r) {
+    //                     Meteor.users.update({_id:Meteor.user()._id}, {$set: {"profile.userInfo.profilePicture":r.url}});
+    //                     console.log(r)
+    //                     $("#pictureUploadLoader").hide()
+    //                     $("#checkSuccess").show()
+    //                     $("#checkSuccess").transition('tada')
+    //                 }
+    //         });
+    //     }
+    // });
 
-    Template.s3_tester.helpers({
-        "files": function(){
-            return S3.collection.find();
-        }
-    });
+    // Template.s3_tester.helpers({
+    //     "files": function(){
+    //         return S3.collection.find();
+    //     }
+    // });
 
-    Template.hello.events({
+    Template.imageUpload.events({
         'change input[type=file]': function(e, t) {
             var files = e.currentTarget.files;
 
@@ -309,8 +309,9 @@ if (Meteor.isClient) {
                 uploader.send(file, function (err, downloadUrl) {
                     if (err) {
                         console.log(err);
+                    } else {
+                        Meteor.users.update({_id:Meteor.user()._id}, {$set: {"profile.userInfo.profilePicture":downloadUrl}});
                     }
-                    console.log(downloadUrl);
                 });
             });
         }
