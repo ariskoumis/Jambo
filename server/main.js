@@ -28,4 +28,28 @@ Meteor.startup(() => {
             this.ready();
         }
     });
+
+    Slingshot.fileRestrictions("myFileUploads", {
+        allowedFileTypes: ["image/png", "image/jpeg", "image/gif"],
+        maxSize: 10 * 1024 * 1024 // 10 MB (use null for unlimited)
+    });
+
+    Slingshot.createDirective("myFileUploads", Slingshot.S3Storage, {
+        bucket: "jamboapp",
+        region: "us-west-1",
+        AWSAccessKeyId: keys.aws.key,
+        AWSSecretAccessKey: keys.aws.secret,
+
+        acl: "public-read",
+
+        authorize: function () {
+            //Deny uploads if user is not logged in.
+            return true;
+        },
+
+        key: function (file) {
+            //Store file into a directory by the user's username.
+            return new Date().getTime() + "_" + file.name;
+        }
+    });
 });

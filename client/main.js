@@ -14,6 +14,11 @@ if (Meteor.isClient) {
     Meteor.subscribe("matches");
     Meteor.subscribe("userData");
 
+    Slingshot.fileRestrictions("myFileUploads", {
+        allowedFileTypes: ["image/png", "image/jpeg", "image/gif"],
+        maxSize: 10 * 1024 * 1024 // 10 MB (use null for unlimited)
+    });
+
     //Main Template
     Template.main.events({
         "click #sideMenu": function() {
@@ -290,6 +295,24 @@ if (Meteor.isClient) {
     Template.s3_tester.helpers({
         "files": function(){
             return S3.collection.find();
+        }
+    });
+
+    Template.hello.events({
+        'change input[type=file]': function(e, t) {
+            var files = e.currentTarget.files;
+
+            Resizer.resize(files[0], {width: 300, height: 300, cropSquare: true}, function(err, file) {
+
+                var uploader = new Slingshot.Upload("myFileUploads");
+
+                uploader.send(file, function (err, downloadUrl) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    console.log(downloadUrl);
+                });
+            });
         }
     });
 }
