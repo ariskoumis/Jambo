@@ -302,7 +302,7 @@ if (Meteor.isClient) {
         'change input[type=file]': function(e, t) {
             var files = e.currentTarget.files;
 
-            Resizer.resize(files[0], {width: 300, height: 300, cropSquare: true}, function(err, file) {
+            Resizer.resize(files[0], {width: 900, height: 900, cropSquare: true}, function(err, file) {
 
                 var uploader = new Slingshot.Upload("myFileUploads");
 
@@ -311,6 +311,8 @@ if (Meteor.isClient) {
                         console.log(err);
                     } else {
                         Meteor.users.update({_id:Meteor.user()._id}, {$set: {"profile.userInfo.profilePicture":downloadUrl}});
+                        let imgSrc = $("#profilePicture").src;
+                        $("#profilePicture").src = imgSrc + "?time=" + new Date().getTime();
                     }
                 });
             });
