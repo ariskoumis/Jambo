@@ -165,7 +165,11 @@ if (Meteor.isClient) {
             }
         },
         'profilePicture': function() {
-            return Meteor.user().profile.userInfo.profilePicture;
+            if (typeof Meteor.user().profile.profilePicture != "undefined") {
+                return Meteor.user().profile.profilePicture;
+            } else {
+                return "https://jamboapp.s3-us-west-1.amazonaws.com/1469209013570_blank-profile-picture-973460_1280-1.png";
+            }
         }
     });
 
@@ -308,9 +312,11 @@ if (Meteor.isClient) {
 
                 uploader.send(file, function (err, downloadUrl) {
                     if (err) {
-                        console.log(err);
+                        console.log('hey!');
                     } else {
-                        Meteor.users.update({_id:Meteor.user()._id}, {$set: {"profile.userInfo.profilePicture":downloadUrl}});
+                        console.log('dude!')
+                        console.log(downloadUrl)
+                        Meteor.users.update({_id:Meteor.user()._id}, {$set: {"profile.profilePicture":downloadUrl}});
                         let imgSrc = $("#profilePicture").src;
                         $("#profilePicture").src = imgSrc + "?time=" + new Date().getTime();
                     }
