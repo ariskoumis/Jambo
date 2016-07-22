@@ -62,28 +62,39 @@
 </template>
 
 <template name="login">
-    <h1 class="centeredHeader">Login</h1>
-    <hr>
-    <div id="loginDiv">
-        <form id="loginForm" class="login ui form attached fluid">
-            <div class="field">
-                <label>Email</label>
-                <input type="text" name="loginEmail" placeholder="Email" required>
-            </div>
-            <div class="field">
-                <label class="left">Password</label>
-                <input type="password" name="loginPassword" placeholder="Password" required>
-            </div>
-            <div onclick="javascript:$('#loginForm').submit()" class="ui fluid animated button" type="submit" tabindex="0">
-                <div class="visible content">Login</div>
-                <div class="hidden content">
-                    <i class="right arrow icon"></i>
+    <h3 class="ui horizontal divider header topSpacing">
+      <i class="music icon"></i>
+      Login
+    </h3>
+    <br>
+    <div class="holder">
+        <div id="loginDiv holder middle">
+            <form id="loginForm" class="login ui form attached fluid">
+                <div class="field">
+                    <label>Email</label>
+                    <div class="ui left icon input">
+                        <input type="text" name="loginEmail" placeholder="Email" required>
+                        <i class="user icon"></i>
+                    </div>
                 </div>
+                <div class="field">
+                    <label class="left">Password</label>
+                    <div class="ui left icon input">
+                        <input type="password" name="loginPassword" placeholder="Password" required>
+                        <i class="lock icon"></i>
+                    </div>
+                </div>
+                <div onclick="javascript:$('#loginForm').submit()" class="ui blue fluid animated button" type="submit" tabindex="0">
+                    <div class="visible content">Login</div>
+                    <div class="hidden content">
+                        <i class="right arrow icon"></i>
+                    </div>
+                </div>
+            </form>
+            <div class="centeredContent">
+                <span><a href="javascript:" id="createAccount">Create Account</a></span> //
+                <span><a href="javascript:" id="forgotPassword">Forgot Password?</a></span>
             </div>
-        </form>
-        <div class="centeredContent">
-            <span><a href="javascript:" id="createAccount">Create Account</a></span> //
-            <span><a href="javascript:" id="forgotPassword">Forgot Password?</a></span>
         </div>
     </div>
 
@@ -179,10 +190,25 @@
                         </div>
                     </div>
                     <div class="extra content">
-                        <a>
-                          <i class="user icon"></i>
-                          22 Friends
-                        </a>
+                        <div class="divided">
+                        <div class="ui two column very relaxed grid">
+                            <div class="center aligned column">
+                                <h2 class="ui sub header">
+                                    Also Plays
+                                </h2>
+                                <span>{{secondaryInstruments}}</span>
+                            </div>
+                            <div class="ui vertical divider">
+                                <i class="music icon"></i>
+                            </div>
+                            <div class="center aligned column">
+                                <h2 class="ui sub header">
+                                    Skill Level
+                                </h2>
+                                <span>{{skillLevel}}</span>
+                            </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -157,6 +157,11 @@ if (Meteor.isClient) {
                 return Meteor.user().profile.userInfo.primaryInstrument.capitalizeFirstLetter();
             }
         },
+        'secondaryInstruments': function() {
+            if (typeof Meteor.user().profile != "undefined") {
+                return Meteor.user().profile.userInfo.secondaryInstruments.join(", ");
+            }
+        },
         'bio': function() {
             if (typeof Meteor.user().profile != "undefined") {
                 return Meteor.user().profile.userInfo.bio
@@ -170,7 +175,52 @@ if (Meteor.isClient) {
             } else {
                 return "https://jamboapp.s3-us-west-1.amazonaws.com/1469209013570_blank-profile-picture-973460_1280-1.png";
             }
-        }
+        },
+        skillLevel: function() {
+            if (typeof Meteor.user().profile != "undefined") {
+                return Meteor.user().profile.userInfo.skillLevel;
+            }
+        },
+        userRecording: function() {
+            if (typeof Meteor.user().profile != "undefined") {
+                return Meteor.user().profile.userInfo.userRecording;
+            }
+        },
+        groupsPurpose: function() {
+            if (typeof Meteor.user().profile != "undefined") {
+                return Meteor.user().profile.userInfo.groupsPurpose;
+            }
+        },
+        peopleWhoPlay: function() {
+            if (typeof Meteor.user().profile != "undefined") {
+                return Meteor.user().profile.userInfo.peopleWhoPlay;
+            }
+        },
+        genres: function() {
+            if (typeof Meteor.user().profile != "undefined") {
+                return Meteor.user().profile.userInfo.genres;
+            }
+        },
+        musicalInfluences: function() {
+            if (typeof Meteor.user().profile != "undefined") {
+                return Meteor.user().profile.userInfo.musicalInfluences;
+            }
+        },
+        favoriteSongs: function() {
+            if (typeof Meteor.user().profile != "undefined") {
+                return Meteor.user().profile.userInfo.favoriteSongs;
+            }
+        },
+        favoriteAlbums: function() {
+            if (typeof Meteor.user().profile != "undefined") {
+                return Meteor.user().profile.userInfo.favoriteAlbums;
+            }
+        },
+        website: function() {
+            if (typeof Meteor.user().profile != "undefined") {
+                return Meteor.user().profile.userInfo.website;
+            }
+        },
     });
 
     Template.profile.events({
@@ -305,17 +355,12 @@ if (Meteor.isClient) {
     Template.imageUpload.events({
         'change input[type=file]': function(e, t) {
             var files = e.currentTarget.files;
-
             Resizer.resize(files[0], {width: 900, height: 900, cropSquare: true}, function(err, file) {
-
                 var uploader = new Slingshot.Upload("myFileUploads");
-
                 uploader.send(file, function (err, downloadUrl) {
                     if (err) {
-                        console.log('hey!');
+                        alertify.alert(err);
                     } else {
-                        console.log('dude!')
-                        console.log(downloadUrl)
                         Meteor.users.update({_id:Meteor.user()._id}, {$set: {"profile.profilePicture":downloadUrl}});
                         let imgSrc = $("#profilePicture").src;
                         $("#profilePicture").src = imgSrc + "?time=" + new Date().getTime();

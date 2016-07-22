@@ -56,3 +56,18 @@ img#profilePicutre.ui.image {
 	height: 500px;
 	width: 500px;
 }
+
+.topSpacing {
+	margin-top: 10px!important;
+}
+
+.divided {
+	position: relative;
+}
+
+.holder {
+  height: 500px
+}
+.holder .middle {
+  height: 100%
+}
