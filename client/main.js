@@ -138,10 +138,6 @@ if (Meteor.isClient) {
             $('[name=favoriteSong1]').val(Meteor.user().profile.userInfo.favoriteSongs[0])
             $('[name=favoriteSong2]').val(Meteor.user().profile.userInfo.favoriteSongs[1])
             $('[name=favoriteSong3]').val(Meteor.user().profile.userInfo.favoriteSongs[2])
-            $('[name=favoriteAlbum1]').val(Meteor.user().profile.userInfo.favoriteAlbums[0])
-            $('[name=favoriteAlbum2]').val(Meteor.user().profile.userInfo.favoriteAlbums[1])
-            $('[name=favoriteAlbum3]').val(Meteor.user().profile.userInfo.favoriteAlbums[2])
-            $('[name=website]').val(Meteor.user().profile.userInfo.website);
         }
     });
 
@@ -193,32 +189,43 @@ if (Meteor.isClient) {
         },
         peopleWhoPlay: function() {
             if (typeof Meteor.user().profile != "undefined") {
-                return Meteor.user().profile.userInfo.peopleWhoPlay;
+                return Meteor.user().profile.userInfo.peopleWhoPlay.join(', ');
             }
         },
         genres: function() {
             if (typeof Meteor.user().profile != "undefined") {
-                return Meteor.user().profile.userInfo.genres;
+                return Meteor.user().profile.userInfo.genres.join(', ');
             }
         },
-        musicalInfluences: function() {
+        musicalInfluence1: function() {
             if (typeof Meteor.user().profile != "undefined") {
-                return Meteor.user().profile.userInfo.musicalInfluences;
+                return Meteor.user().profile.userInfo.musicalInfluences[0];
             }
         },
-        favoriteSongs: function() {
+        musicalInfluence2: function() {
             if (typeof Meteor.user().profile != "undefined") {
-                return Meteor.user().profile.userInfo.favoriteSongs;
+                return Meteor.user().profile.userInfo.musicalInfluences[1];
             }
         },
-        favoriteAlbums: function() {
+        musicalInfluence3: function() {
             if (typeof Meteor.user().profile != "undefined") {
-                return Meteor.user().profile.userInfo.favoriteAlbums;
+                return Meteor.user().profile.userInfo.musicalInfluences[2];
             }
         },
-        website: function() {
+
+        favoriteSong1: function() {
             if (typeof Meteor.user().profile != "undefined") {
-                return Meteor.user().profile.userInfo.website;
+                return Meteor.user().profile.userInfo.favoriteSongs[0];
+            }
+        },
+        favoriteSong2: function() {
+            if (typeof Meteor.user().profile != "undefined") {
+                return Meteor.user().profile.userInfo.favoriteSongs[1];
+            }
+        },
+        favoriteSong3: function() {
+            if (typeof Meteor.user().profile != "undefined") {
+                return Meteor.user().profile.userInfo.favoriteSongs[0];
             }
         },
     });
@@ -230,6 +237,9 @@ if (Meteor.isClient) {
         // 'click .ui.dropdown': function() {
         //     $('.ui.dropdown').focus();
         // },
+        'click #dicks': function() {
+            window.open('http://apache.org', '_blank', 'location=yes');
+        },
         'click #editProfileSubmit': function() {
             var userInfo = {
                 bio: $('[name=bio]').val(),
@@ -242,9 +252,6 @@ if (Meteor.isClient) {
                 genres: $('[name=genres]').val().split(','),
                 musicalInfluences: [$('[name=musicalInfluence1]').val(),$('[name=musicalInfluence2]').val(), $('[name=musicalInfluence3]').val()],
                 favoriteSongs: [$('[name=favoriteSong1]').val(),$('[name=favoriteSong2]').val(), $('[name=favoriteSong3]').val()],
-                favoriteAlbums:[$('[name=favoriteAlbum1]').val(),$('[name=favoriteAlbum2]').val(), $('[name=favoriteAlbum3]').val()],
-                website: $('[name=website]').val(),
-                matchable: true,
             };
             Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.userInfo": userInfo}}, function(err) {
                 if (err) {
@@ -265,8 +272,6 @@ if (Meteor.isClient) {
                             peopleWhoPlay: Meteor.user().profile.userInfo.peopleWhoPlay,
                             genres: Meteor.user().profile.userInfo.genres,
                             musicalInfluences: Meteor.user().profile.userInfo.musicalInfluences,
-                            favoriteAlbums: Meteor.user().profile.userInfo.favoriteAlbums,
-                            website: Meteor.user().profile.userInfo.website,
                         }
                     })
                     alertify.alert('Yay!', 'Changes saved!', function() {
@@ -361,7 +366,13 @@ if (Meteor.isClient) {
                     if (err) {
                         alertify.alert(err);
                     } else {
-                        Meteor.users.update({_id:Meteor.user()._id}, {$set: {"profile.profilePicture":downloadUrl}});
+                        Meteor.users.update({_id:Meteor.user()._id}, {$set: {"profile.profilePicture":downloadUrl}},  function(err) {
+                            if (err) {
+                                alertify.alert("Oh no, something went wrong :( Please try again later.")
+                            } else {
+                                usersDB.upsert({_id: Meteor.user()._id}, {$set: { profilePicture: downloadUrl}})
+                            }
+                        });
                         let imgSrc = $("#profilePicture").src;
                         $("#profilePicture").src = imgSrc + "?time=" + new Date().getTime();
                     }

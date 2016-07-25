@@ -179,8 +179,10 @@
                     </div>
                     <div class="content">
                         <div id="flipCard" class="floatRight">
+                            Edit Profile
                             <i class="edit icon large"></i>
                         </div>
+
                         <a class="header">{{firstName}}</a>
                         <div class="meta">
                             <span>{{primaryInstrument}}</span>
@@ -192,7 +194,7 @@
                     <div class="extra content">
                         <div class="divided">
                         <div class="ui two column very relaxed grid">
-                            <div class="center aligned column">
+                            <div class="column">
                                 <h2 class="ui sub header">
                                     Also Plays
                                 </h2>
@@ -201,11 +203,67 @@
                             <div class="ui vertical divider">
                                 <i class="music icon"></i>
                             </div>
-                            <div class="center aligned column">
+                            <div class="column">
                                 <h2 class="ui sub header">
                                     Skill Level
                                 </h2>
                                 <span>{{skillLevel}}</span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <h2 class="ui sub header">
+                            Genres
+                        </h2>
+                        <span>{{genres}}</span>
+                    </div>
+                    <div class="extra content">
+                        <h2 class="ui sub header">
+                            Musical Influences
+                        </h2>
+                        <span>
+                            <div class="ui ordered horizontal list">
+                                <div class="ui item">{{musicalInfluence1}}</div>
+                                <div class="ui item">{{musicalInfluence2}}</div>
+                                <div class="ui item">{{musicalInfluence3}}</div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="extra content">
+                        <h2 class="ui sub header">
+                            Favorite Songs
+                        </h2>
+                        <span>
+                            <div class="ui list">
+                                <div class="ui item">{{favoriteSong1}}</div>
+                                <div class="ui item">{{favoriteSong2}}</div>
+                                <div class="ui item">{{favoriteSong3}}</div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="extra content">
+                        <h2 class="ui sub header">
+                            Looking For People Who Play
+                        </h2>
+                        <span>
+                            {{peopleWhoPlay}}
+                        </span>
+                    </div>
+                    <div class="extra content">
+                        <div class="divided">
+                        <div class="ui two column very relaxed grid">
+                            <div class="column">
+                                <h2 class="ui sub header">
+                                    Intention
+                                </h2>
+                                <span>{{groupsPurpose}}</span>
+                            </div>
+                            <div class="column">
+                                <button id="dicks" class="ui left aligned blue labeled icon button">
+                                    <i class="music icon"></i>
+                                    Recording
+                                </button>
                             </div>
                         </div>
                         </div>
@@ -234,20 +292,20 @@
                                     <i class="dropdown icon"></i>
                                     <div class="default text">Select an Instrument</div>
                                     <div class="menu"> 
-                                        <div class="item" data-value="bass">Bass</div>
-                                        <div class="item" data-value="cello">Cello</div>
-                                        <div class="item" data-value="drums">Drums</div>
-                                        <div class="item" data-value="flute">Flute</div>
-                                        <div class="item" data-value="guitar">Guitar</div>
-                                        <div class="item" data-value="marimbaOrVibraphone">Marimba/Vibraphone</div>
-                                        <div class="item" data-value="oboe">Oboe</div>
-                                        <div class="item" data-value="piano">Piano</div>
-                                        <div class="item" data-value="saxaphone">Saxophone</div>
-                                        <div class="item" data-value="trombone">Trombone</div>
-                                        <div class="item" data-value="trumpet">Trumpet</div>
-                                        <div class="item" data-value="tuba">Tuba</div>
-                                        <div class="item" data-value="vocals">Vocals</div>
-                                        <div class="item" data-value="violin">Violin</div>
+                                        <div class="item" data-value="Bass">Bass</div>
+                                        <div class="item" data-value="Cello">Cello</div>
+                                        <div class="item" data-value="Drums">Drums</div>
+                                        <div class="item" data-value="Flute">Flute</div>
+                                        <div class="item" data-value="Guitar">Guitar</div>
+                                        <div class="item" data-value="Vibraphone">Marimba/Vibraphone</div>
+                                        <div class="item" data-value="Pboe">Oboe</div>
+                                        <div class="item" data-value="Piano">Piano</div>
+                                        <div class="item" data-value="Saxaphone">Saxophone</div>
+                                        <div class="item" data-value="Trombone">Trombone</div>
+                                        <div class="item" data-value="Trumpet">Trumpet</div>
+                                        <div class="item" data-value="Tuba">Tuba</div>
+                                        <div class="item" data-value="Vocals">Vocals</div>
+                                        <div class="item" data-value="Violin">Violin</div>
                                     </div>
                                 </div>
                             </div>
@@ -258,20 +316,20 @@
                                     <i class="dropdown icon"></i>
                                     <div class="default text">Select Instruments</div>
                                     <div class="menu"> 
-                                        <div class="item" data-value="bass">Bass</div>
-                                        <div class="item" data-value="cello">Cello</div>
-                                        <div class="item" data-value="drums">Drums</div>
-                                        <div class="item" data-value="flute">Flute</div>
-                                        <div class="item" data-value="guitar">Guitar</div>
-                                        <div class="item" data-value="marimbaOrVibraphone">Marimba/Vibraphone</div>
-                                        <div class="item" data-value="oboe">Oboe</div>
-                                        <div class="item" data-value="piano">Piano</div>
-                                        <div class="item" data-value="saxaphone">Saxophone</div>
-                                        <div class="item" data-value="trombone">Trombone</div>
-                                        <div class="item" data-value="trumpet">Trumpet</div>
-                                        <div class="item" data-value="tuba">Tuba</div>
-                                        <div class="item" data-value="vocals">Vocals</div>
-                                        <div class="item" data-value="violin">Violin</div>
+                                        <div class="item" data-value="Bass">Bass</div>
+                                        <div class="item" data-value="Cello">Cello</div>
+                                        <div class="item" data-value="Drums">Drums</div>
+                                        <div class="item" data-value="Flute">Flute</div>
+                                        <div class="item" data-value="Guitar">Guitar</div>
+                                        <div class="item" data-value="Vibraphone">Marimba/Vibraphone</div>
+                                        <div class="item" data-value="Oboe">Oboe</div>
+                                        <div class="item" data-value="Piano">Piano</div>
+                                        <div class="item" data-value="Saxaphone">Saxophone</div>
+                                        <div class="item" data-value="Trombone">Trombone</div>
+                                        <div class="item" data-value="Trumpet">Trumpet</div>
+                                        <div class="item" data-value="Tuba">Tuba</div>
+                                        <div class="item" data-value="Vocals">Vocals</div>
+                                        <div class="item" data-value="Violin">Violin</div>
                                     </div>
                                 </div>
                             </div>
@@ -291,49 +349,19 @@
                                 </div>
                             </div>
                             <div class="field">
-                                <label>Link to you Playing</label>
-                                <input type="text" name="userRecording" placeholder="User Recording">
-                            </div>
-                        </div>
-                        <div class="two fields">
-                            <div class="field">
                                 <label>Forming group for</label>
                                 <div id="groupsPurposeDropdown" class="ui fluid selection dropdown">
                                     <input type="hidden" name="groupsPurpose" placeholder="Group's Purpose">
                                     <i class="dropdown icon"></i>
                                     <div class="default text">Intention</div>
                                     <div class="menu"> 
-                                        <div class="item" data-value="jam"><i class="smile icon"></i>Casual Jam</div>
-                                        <div class="item" data-value="band"><i class="users icon"></i>Band Formation</div>
-                                        <div class="item" data-value="gig"><i class="suitcase icon"></i>Professional Gig</div>
+                                        <div class="item" data-value="Jam"><i class="smile icon"></i>Casual Jam</div>
+                                        <div class="item" data-value="Band"><i class="users icon"></i>Band Formation</div>
+                                        <div class="item" data-value="Gig"><i class="suitcase icon"></i>Professional Gig</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="field">
-                                <label>Looking for people who play</label>
-                                <div id="peopleWhoPlayDropdown" class="ui fluid multiple selection dropdown">
-                                    <input type="hidden" name="peopleWhoPlay" placeholder="Instruments">
-                                    <i class="dropdown icon"></i>
-                                    <div class="default text">Select Instruments</div>
-                                    <div class="menu"> 
-                                        <div class="item" data-value="anything">Anything!</div>
-                                        <div class="item" data-value="bass">Bass</div>
-                                        <div class="item" data-value="cello">Cello</div>
-                                        <div class="item" data-value="drums">Drums</div>
-                                        <div class="item" data-value="flute">Flute</div>
-                                        <div class="item" data-value="guitar">Guitar</div>
-                                        <div class="item" data-value="marimbaOrVibraphone">Marimba/Vibraphone</div>
-                                        <div class="item" data-value="oboe">Oboe</div>
-                                        <div class="item" data-value="piano">Piano</div>
-                                        <div class="item" data-value="saxaphone">Saxophone</div>
-                                        <div class="item" data-value="trombone">Trombone</div>
-                                        <div class="item" data-value="trumpet">Trumpet</div>
-                                        <div class="item" data-value="tuba">Tuba</div>
-                                        <div class="item" data-value="vocals">Vocals</div>
-                                        <div class="item" data-value="violin">Violin</div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                         <div class="two fields">
                             <div class="field">
@@ -343,13 +371,13 @@
                                     <i class="dropdown icon"></i>
                                     <div class="default text">Genres</div>
                                     <div class="menu"> 
-                                        <div class="item" data-value="alternative">Alternative</div>
-                                        <div class="item" data-value="blues">Blues</div>
-                                        <div class="item" data-value="classical">Classical</div>
-                                        <div class="item" data-value="country">Country</div>
-                                        <div class="item" data-value="dance">Dance (EDM)</div>
-                                        <div class="item" data-value="electronic">Electronic</div>
-                                        <div class="item" data-value="hipHopRap">Hip-Hop/Rap</div>
+                                        <div class="item" data-value="Alternative">Alternative</div>
+                                        <div class="item" data-value="Blues">Blues</div>
+                                        <div class="item" data-value="Classical">Classical</div>
+                                        <div class="item" data-value="Country">Country</div>
+                                        <div class="item" data-value="Dance">Dance (EDM)</div>
+                                        <div class="item" data-value="Electronic">Electronic</div>
+                                        <div class="item" data-value="HipHop/Rap">Hip-Hop/Rap</div>
                                         <div class="item" data-value="Indie">Indie</div>
                                         <div class="item" data-value="Pop">Pop</div>
                                         <div class="item" data-value="Jazz">Jazz</div>
@@ -366,11 +394,33 @@
                                 </div>
                             </div>
                             <div class="field">
-                                <label>Musical Influences</label>
-                                <input class="ui fluid input attached segment topTextInput" type="text" name="musicalInfluence1" placeholder="Miles Davis">
-                                <input class="ui fluid input attached segment middleTextInput" type="text" name="musicalInfluence2" placeholder="Def Leppard">
-                                <input class="ui fluid input attached segment bottomTextInput" type="text" name="musicalInfluence3" placeholder="MF Doom">
+                                <label>Looking for people who play</label>
+                                <div id="peopleWhoPlayDropdown" class="ui fluid multiple selection dropdown">
+                                    <input type="hidden" name="peopleWhoPlay" placeholder="Instruments">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Select Instruments</div>
+                                    <div class="menu"> 
+                                        <div class="item" data-value="Anything">Anything!</div>
+                                        <div class="item" data-value="Bass">Bass</div>
+                                        <div class="item" data-value="Cello">Cello</div>
+                                        <div class="item" data-value="Drums">Drums</div>
+                                        <div class="item" data-value="Flute">Flute</div>
+                                        <div class="item" data-value="Guitar">Guitar</div>
+                                        <div class="item" data-value="Vibraphone">Marimba/Vibraphone</div>
+                                        <div class="item" data-value="Oboe">Oboe</div>
+                                        <div class="item" data-value="Piano">Piano</div>
+                                        <div class="item" data-value="Saxaphone">Saxophone</div>
+                                        <div class="item" data-value="Trombone">Trombone</div>
+                                        <div class="item" data-value="Trumpet">Trumpet</div>
+                                        <div class="item" data-value="Tuba">Tuba</div>
+                                        <div class="item" data-value="Vocals">Vocals</div>
+                                        <div class="item" data-value="Violin">Violin</div>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <div class="two fields">
+                            
                         </div>
                         <div class="two fields">
                             <div class="field">
@@ -380,17 +430,13 @@
                                 <input class="ui fluid input attached segment" type="text" name="favoriteSong3" placeholder="Radiohead - Creep">
                             </div>
                             <div class="field">
-                                <label>Favorite Albums</label>
-                                <input class="ui fluid input attached segment" type="text" name="favoriteAlbum1" placeholder="Marvin Gaye - What's Going On">
-                                <input class="ui fluid input attached segment" type="text" name="favoriteAlbum2" placeholder="Cannonball Adderly - Something Else">
-                                <input class="ui fluid input attached segment" type="text" name="favoriteAlbum3" placeholder="Prince - Purple Rain">
+                                <label>Musical Influences</label>
+                                <input class="ui fluid input attached segment topTextInput" type="text" name="musicalInfluence1" placeholder="Miles Davis">
+                                <input class="ui fluid input attached segment middleTextInput" type="text" name="musicalInfluence2" placeholder="Def Leppard">
+                                <input class="ui fluid input attached segment bottomTextInput" type="text" name="musicalInfluence3" placeholder="MF Doom">
                             </div>
                         </div>
                         <div class="two fields">
-                            <div class="field">
-                                <label>Website</label>
-                                <input type="text" name="website" placeholder="Soundcloud, Bandcamp, Youtube, etc.">
-                            </div>
                             <div class="field">
                                 <label>Search Radius (Miles)</label>
                                 <div class="ui fluid selection dropdown">
@@ -404,6 +450,10 @@
                                         <div class="item" data-value="50">50</div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="field">
+                                <label>Link to you Playing</label>
+                                <input type="text" name="userRecording" placeholder="User Recording">
                             </div>
                         </div>
                     </div>
