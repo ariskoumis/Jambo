@@ -8,7 +8,7 @@ span {
 }
 
 .leftAnchor {
-	position: absolute;
+	position: relative;
     left: 0px;
 }
 

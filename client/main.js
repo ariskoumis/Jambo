@@ -73,7 +73,7 @@ if (Meteor.isClient) {
             Meteor.loginWithPassword(email,password, function(err) {
                 if (err) {
                     $('#loginDiv').transition('shake');
-                    alertify.alert(err.reason);
+                    alertify.alert("Error :(", err.reason);
                 }
             });
         },
@@ -378,11 +378,11 @@ if (Meteor.isClient) {
                 var uploader = new Slingshot.Upload("myFileUploads");
                 uploader.send(file, function (err, downloadUrl) {
                     if (err) {
-                        alertify.alert(err);
+                        alertify.alert("Error", err);
                     } else {
                         Meteor.users.update({_id:Meteor.user()._id}, {$set: {"profile.profilePicture":downloadUrl}},  function(err) {
                             if (err) {
-                                alertify.alert("Oh no, something went wrong :( Please try again later.")
+                                alertify.alert("Error", "Oh no, something went wrong :( Please try again later.")
                             } else {
                                 usersDB.upsert({_id: Meteor.user()._id}, {$set: { profilePicture: downloadUrl}})
                             }
