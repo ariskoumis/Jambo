@@ -237,16 +237,29 @@ if (Meteor.isClient) {
         // 'click .ui.dropdown': function() {
         //     $('.ui.dropdown').focus();
         // },
-        'click #dicks': function() {
-            window.open('http://apache.org', '_blank', 'location=yes');
+        'click #userRecording': function() {
+            window.open(Meteor.user().profile.userInfo.userRecording, "_system");
         },
         'click #editProfileSubmit': function() {
-            var userInfo = {
+            //formatting url of user recording
+            rawUserRecording = $('[name=userRecording]').val();
+            let userRecordingInput;
+            if (rawUserRecording.split('')[0] != 'h' && rawUserRecording.split('')[1] != 't' && rawUserRecording.split('')[2] != 't' && rawUserRecording.split('')[3] != 'p') {
+                if (rawUserRecording.split('')[0] != 'w' && rawUserRecording.split('')[1] != 'w' && rawUserRecording.split('')[2] != 'w') {
+                    userRecordingInput = 'http://www.' + rawUserRecording;
+                } else {
+                    userRecordingInput = 'http://' + rawUserRecording;
+                }
+            } else {
+                userRecordingInput = rawUserRecording
+            }
+            console.log(userRecordingInput)
+            let userInfo = {
                 bio: $('[name=bio]').val(),
                 primaryInstrument: $('[name=primaryInstrument]').val(),
                 secondaryInstruments: $('[name=secondaryInstruments]').val().split(','),
                 skillLevel: $('[name=skillLevel]').val(),
-                userRecording: $('[name=userRecording]').val(),
+                userRecording: userRecordingInput,
                 groupsPurpose: $('[name=groupsPurpose]').val(),
                 peopleWhoPlay: $('[name=peopleWhoPlay]').val().split(','),
                 genres: $('[name=genres]').val().split(','),
@@ -275,6 +288,7 @@ if (Meteor.isClient) {
                         }
                     })
                     alertify.alert('Yay!', 'Changes saved!', function() {
+                        Session.set("userRecording", Meteor.user().profile.userInfo.userRecording)
                         $('.shape').shape('flip over')
                     })
                 }
