@@ -303,6 +303,7 @@ if (Meteor.isClient) {
         "click #modalToProfile": function() {
             FlowRouter.go('/profile')
             $('.ui.basic.modal').modal('hide');
+            $('.shape').shape('flip back')
         },
         "click #closeModal": function() {
             $('.ui.basic.modal').modal('hide');
