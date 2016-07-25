@@ -244,7 +244,9 @@ if (Meteor.isClient) {
             //formatting url of user recording
             rawUserRecording = $('[name=userRecording]').val();
             let userRecordingInput;
-            if (rawUserRecording.split('')[0] != 'h' && rawUserRecording.split('')[1] != 't' && rawUserRecording.split('')[2] != 't' && rawUserRecording.split('')[3] != 'p') {
+            if (rawUserRecording == "") {
+                userRecordingInput = "";
+            } else if (rawUserRecording.split('')[0] != 'h' && rawUserRecording.split('')[1] != 't' && rawUserRecording.split('')[2] != 't' && rawUserRecording.split('')[3] != 'p') {
                 if (rawUserRecording.split('')[0] != 'w' && rawUserRecording.split('')[1] != 'w' && rawUserRecording.split('')[2] != 'w') {
                     userRecordingInput = 'http://www.' + rawUserRecording;
                 } else {
@@ -253,7 +255,10 @@ if (Meteor.isClient) {
             } else {
                 userRecordingInput = rawUserRecording
             }
-            console.log(userRecordingInput)
+            //reinventing the wheel here
+            if ($('[name=bio]').val()=="" || $('[name=primaryInstrument]').val()=="" || $('[name=secondaryInstruments]').val()=="" || $('[name=skillLevel]').val() || userRecordingInput == "" || $('[name=groupsPurpose]').val()=="" || $('[name=peopleWhoPlay]').val().split(',')=="" || $('[name=genres]').val()=="" || $('[name=musicalInfluence1]').val()=="" || $('[name=musicalInfluence2]').val()=="" || $('[name=musicalInfluence3]').val()=="" || $('[name=favoriteSong1]').val()=="" || $('[name=favoriteSong2]').val()=="" || $('[name=favoriteSong3]').val=="") {
+                alertify.alert("Error", "Please fill all fields.")
+            } else {
             let userInfo = {
                 bio: $('[name=bio]').val(),
                 primaryInstrument: $('[name=primaryInstrument]').val(),
@@ -293,6 +298,7 @@ if (Meteor.isClient) {
                     })
                 }
             })
+        }
         },
         'keypress input': function(e) {
             Session.set('profileChangesSaved', false);
