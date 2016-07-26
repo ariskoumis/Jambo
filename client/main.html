@@ -19,9 +19,7 @@
 
 
 <template name="home">
-    <button class="fluid ui button" id="cameraButton">Camera</button>
     <button class="fluid ui button" id="logoutButton">Logout</button>
-    {{> imageUpload}}
 </template>
 
 <template name="menu">
@@ -270,7 +268,7 @@
                                 <span>{{groupsPurpose}}</span>
                             </div>
                             <div class="column">
-                                <button id="userRecording" class="ui left aligned blue labeled icon button">
+                                <button id="userRecordingButton" class="ui left aligned blue labeled icon button">
                                     <i class="music icon"></i>
                                     Recording
                                 </button>
@@ -431,9 +429,6 @@
                             </div>
                         </div>
                         <div class="two fields">
-                            
-                        </div>
-                        <div class="two fields">
                             <div class="field">
                                 <label>Favorite Songs</label>
                                 <input class="ui fluid input attached segment" type="text" name="favoriteSong1" placeholder="D'Angelo - Really Love">
@@ -491,7 +486,7 @@
                         </div>
                     </div>
                     <div class="six wide column inlineButtons">
-                        <button class="blue circular ui icon button">
+                        <button class="green circular ui icon button">
                             <i class="checkmark icon"></i>
                         </button>
                         <button class="red circular ui icon button">
@@ -499,7 +494,7 @@
                         </button>
                     </div>
                     <div class="six wide column">
-                        <button id="userRecording" class="ui fluid blue icon button">
+                        <button id="userRecordingLink" class="ui fluid blue icon button">
                             <i class="music icon"></i>
                             Recording
                         </button>

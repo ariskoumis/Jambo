@@ -124,13 +124,6 @@ if (Meteor.isClient) {
 
         //Inserting Existing Profile Info
         if (typeof Meteor.user().profile != "undefined") {
-            $('[name=bio]').val(Meteor.user().profile.userInfo.bio);
-            $('#primaryInstrumentDropdown').dropdown('set selected',Meteor.user().profile.userInfo.primaryInstrument);
-            $('#secondaryInstrumentsDropdown').dropdown('set selected', Meteor.user().profile.userInfo.secondaryInstruments);
-            $('#skillDropdown').dropdown('set selected', Meteor.user().profile.userInfo.skillLevel);
-            $('[name=userRecording').val(Meteor.user().profile.userInfo.userRecording)
-            $('#groupsPurposeDropdown').dropdown('set selected', Meteor.user().profile.userInfo.groupsPurpose)
-            $('#peopleWhoPlayDropdown').dropdown('set selected', Meteor.user().profile.userInfo.peopleWhoPlay)
             $('#genresDropdown').dropdown('set selected', Meteor.user().profile.userInfo.genres)
             $('[name=musicalInfluence1]').val(Meteor.user().profile.userInfo.musicalInfluences[0])
             $('[name=musicalInfluence2]').val(Meteor.user().profile.userInfo.musicalInfluences[1])
@@ -138,6 +131,14 @@ if (Meteor.isClient) {
             $('[name=favoriteSong1]').val(Meteor.user().profile.userInfo.favoriteSongs[0])
             $('[name=favoriteSong2]').val(Meteor.user().profile.userInfo.favoriteSongs[1])
             $('[name=favoriteSong3]').val(Meteor.user().profile.userInfo.favoriteSongs[2])
+            $('#skillDropdown').dropdown('set selected', Meteor.user().profile.userInfo.skillLevel);
+            $('#groupsPurposeDropdown').dropdown('set selected', Meteor.user().profile.userInfo.groupsPurpose)
+            $('#peopleWhoPlayDropdown').dropdown('set selected', Meteor.user().profile.userInfo.peopleWhoPlay)
+            $('[name=bio]').val(Meteor.user().profile.userInfo.bio);
+            $('#primaryInstrumentDropdown').dropdown('set selected',Meteor.user().profile.userInfo.primaryInstrument);
+            $('#secondaryInstrumentsDropdown').dropdown('set selected', Meteor.user().profile.userInfo.secondaryInstruments);
+            $('[name=userRecording]').val(Meteor.user().profile.userInfo.userRecording);
+            
         }
     });
 
@@ -237,7 +238,7 @@ if (Meteor.isClient) {
         // 'click .ui.dropdown': function() {
         //     $('.ui.dropdown').focus();
         // },
-        'click #userRecording': function() {
+        'click #userRecordingButton': function() {
             window.open(Meteor.user().profile.userInfo.userRecording, "_system");
         },
         'click #editProfileSubmit': function() {
@@ -299,7 +300,6 @@ if (Meteor.isClient) {
                                 }
                             })
                             alertify.alert('Yay!', 'Changes saved!', function() {
-                                Session.set("userRecording", Meteor.user().profile.userInfo.userRecording)
                                 $('.shape').shape('flip over')
                             })
                         }
