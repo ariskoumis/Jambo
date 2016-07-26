@@ -329,9 +329,13 @@ if (Meteor.isClient) {
             var matchArray = []
 
             //Search by Primary Instrument
-            for (var i=0; i<Meteor.user().profile.userInfo.peopleWhoPlay.length; i++) {
+            if ($.inArray("Anything", Meteor.user().peopleWhoPlay) > -1) {
+                usersDB.find().fetch()
+            } else {
+                for (var i=0; i<Meteor.user().profile.userInfo.peopleWhoPlay.length; i++) {
                 initialMatchArray = initialMatchArray.concat(usersDB.find({primaryInstrument:Meteor.user().profile.userInfo.peopleWhoPlay[i]}).fetch());
                 initialMatchArray = initialMatchArray.concat(usersDB.find({secondaryInstruments:Meteor.user().profile.userInfo.peopleWhoPlay[i]}).fetch());
+                }
             }
             //Search by Secondary Instrument
 
