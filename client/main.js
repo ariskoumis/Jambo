@@ -328,16 +328,30 @@ if (Meteor.isClient) {
             var initialMatchArray = []
             var matchArray = []
 
-            //Matching Algorithim - currently very hacky and inefficent, will return to this later.
-            //Need to grab users whose secondary instruments are match, currently only grabbing primary instrument.
+            //Search by Primary Instrument
             for (var i=0; i<Meteor.user().profile.userInfo.peopleWhoPlay.length; i++) {
-                initialMatchArray = initialMatchArray.concat(usersDB.find({primaryInstrument:Meteor.user().profile.userInfo.peopleWhoPlay[i]}).fetch())
+                initialMatchArray = initialMatchArray.concat(usersDB.find({primaryInstrument:Meteor.user().profile.userInfo.peopleWhoPlay[i]}).fetch());
+                initialMatchArray = initialMatchArray.concat(usersDB.find({secondaryInstruments:Meteor.user().profile.userInfo.peopleWhoPlay[i]}).fetch());
             }
+            //Search by Secondary Instrument
+
+            //Delete Current User from Matches
+            //First, Push Dummy object that gets removed pre-render
+            matchArray.push({_id:"1"});
+            let alreadyMatched = false;
             initialMatchArray.forEach(function(match) {
-                if (match._id != Meteor.user()._id) {
+                for (var i=0; i<matchArray.length;i++) {
+                    if (match._id == matchArray[i]._id) {
+                        alreadyMatched = true;
+                        break;
+                    }
+                }
+                if (match._id != Meteor.user()._id && alreadyMatched != true) {
                     matchArray.push(match);
                 }
+                alreadyMatched = false
             })
+            matchArray.shift()
             return matchArray
         }
     })
