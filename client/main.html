@@ -478,8 +478,109 @@
 
 <template name="matches">
     {{#each matchedUsers}}
-        OH YEAH
-        <br>
+        <div class="ui fluid content card">
+            <div class="cardImage image">
+                <img id="profilePicture" class="ui image" src={{this.profilePicture}}>
+            </div>
+            <div class="content">
+                <div class="ui grid">
+                    <div class="four wide column">
+                        <h3 class="header noBottomMargin">{{this.firstName}}</h3>
+                        <div class="meta">
+                            <span>{{this.primaryInstrument}}</span>
+                        </div>
+                    </div>
+                    <div class="six wide column inlineButtons">
+                        <button class="blue circular ui icon button">
+                            <i class="checkmark icon"></i>
+                        </button>
+                        <button class="red circular ui icon button">
+                            <i class="remove icon "></i>
+                        </button>
+                    </div>
+                    <div class="six wide column">
+                        <button id="userRecording" class="ui fluid blue icon button">
+                            <i class="music icon"></i>
+                            Recording
+                        </button>
+                    </div>
+                </div>
+                <div class="description">
+                    {{this.bio}}
+                </div>
+            </div>
+            <div class="extra content">
+                <div class="divided">
+                <div class="ui two column very relaxed grid">
+                    <div class="column">
+                        <h2 class="ui sub header">
+                            Also Plays
+                        </h2>
+                        <span>{{join this.secondaryInstruments}}</span>
+                    </div>
+                    <div class="ui vertical divider">
+                        <i class="music icon"></i>
+                    </div>
+                    <div class="column">
+                        <h2 class="ui sub header">
+                            Skill Level
+                        </h2>
+                        <span>{{this.skillLevel}}</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="extra content">
+                <h2 class="ui sub header">
+                    Genres
+                </h2>
+                <span>{{join this.genres}}</span>
+            </div>
+            <div class="extra content">
+                <h2 class="ui sub header">
+                    Musical Influences
+                </h2>
+                <span>
+                    <div class="ui ordered horizontal list">
+                        {{#each influence in this.musicalInfluences}}
+                            <div class="ui item">{{influence}}</div>
+                        {{/each}}
+                    </div>
+                </span>
+            </div>
+            <div class="extra content">
+                <h2 class="ui sub header">
+                    Favorite Songs
+                </h2>
+                <span>
+                    <div class="ui list">
+                        {{#each song in this.favoriteSongs}}
+                            <div class="ui item">{{song}}</div>
+                        {{/each}}
+                    </div>
+                </span>
+            </div>
+            <div class="extra content">
+                <div class="divided">
+                <div class="ui very relaxed grid">
+                    <div class="four wide column">
+                        <h2 class="ui sub header">
+                            Intention
+                        </h2>
+                        <span>{{this.groupsPurpose}}</span>
+                    </div>
+                    <div class="twelve wide column">
+                        <h2 class="ui sub header">
+                            Looking For People Who Play
+                        </h2>
+                        <span>
+                            {{join this.peopleWhoPlay}}
+                        </span>     
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
     {{/each}}
 </template>
 

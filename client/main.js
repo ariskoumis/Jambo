@@ -256,49 +256,56 @@ if (Meteor.isClient) {
                 userRecordingInput = rawUserRecording
             }
             //reinventing the wheel here
-            if ($('[name=bio]').val()=="" || $('[name=primaryInstrument]').val()=="" || $('[name=secondaryInstruments]').val()=="" || $('[name=skillLevel]').val() || userRecordingInput == "" || $('[name=groupsPurpose]').val()=="" || $('[name=peopleWhoPlay]').val().split(',')=="" || $('[name=genres]').val()=="" || $('[name=musicalInfluence1]').val()=="" || $('[name=musicalInfluence2]').val()=="" || $('[name=musicalInfluence3]').val()=="" || $('[name=favoriteSong1]').val()=="" || $('[name=favoriteSong2]').val()=="" || $('[name=favoriteSong3]').val=="") {
+            if ($('[name=bio]').val()=="" || $('[name=primaryInstrument]').val()=="" || $('[name=secondaryInstruments]').val()=="" || $('[name=skillLevel]').val()==""|| userRecordingInput == "" || $('[name=groupsPurpose]').val()=="" || $('[name=peopleWhoPlay]').val().split(',')=="" || $('[name=genres]').val()=="" || $('[name=musicalInfluence1]').val()=="" || $('[name=musicalInfluence2]').val()=="" || $('[name=musicalInfluence3]').val()=="" || $('[name=favoriteSong1]').val()=="" || $('[name=favoriteSong2]').val()=="" || $('[name=favoriteSong3]').val=="") {
                 alertify.alert("Error", "Please fill all fields.")
             } else {
-            let userInfo = {
-                bio: $('[name=bio]').val(),
-                primaryInstrument: $('[name=primaryInstrument]').val(),
-                secondaryInstruments: $('[name=secondaryInstruments]').val().split(','),
-                skillLevel: $('[name=skillLevel]').val(),
-                userRecording: userRecordingInput,
-                groupsPurpose: $('[name=groupsPurpose]').val(),
-                peopleWhoPlay: $('[name=peopleWhoPlay]').val().split(','),
-                genres: $('[name=genres]').val().split(','),
-                musicalInfluences: [$('[name=musicalInfluence1]').val(),$('[name=musicalInfluence2]').val(), $('[name=musicalInfluence3]').val()],
-                favoriteSongs: [$('[name=favoriteSong1]').val(),$('[name=favoriteSong2]').val(), $('[name=favoriteSong3]').val()],
-            };
-            Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.userInfo": userInfo}}, function(err) {
-                if (err) {
-                    alertify.alert('Profile Change Unsuccessful', "Sorry, something went wrong :(")
-                } else {
-                    usersDB.upsert({
-                        _id: Meteor.user()._id
-                    }, {
-                        $set: {
-                            userID: Meteor.user()._id,
-                            firstName: Meteor.user().firstName, 
-                            lastName: Meteor.user().lastName,
-                            primaryInstrument: Meteor.user().profile.userInfo.primaryInstrument,
-                            secondaryInstruments: Meteor.user().profile.userInfo.secondaryInstruments,
-                            skillLevel: Meteor.user().profile.userInfo.skillLevel,
-                            userRecording: Meteor.user().profile.userInfo.userRecording,
-                            groupsPurpose: Meteor.user().profile.userInfo.groupsPurpose,
-                            peopleWhoPlay: Meteor.user().profile.userInfo.peopleWhoPlay,
-                            genres: Meteor.user().profile.userInfo.genres,
-                            musicalInfluences: Meteor.user().profile.userInfo.musicalInfluences,
+                if($('[name=bio]').val().length >= 500) {
+                    alertify.alert("Error", "Please shorten your bio.")
+                }
+                else {
+                    let userInfo = {
+                        bio: $('[name=bio]').val(),
+                        primaryInstrument: $('[name=primaryInstrument]').val(),
+                        secondaryInstruments: $('[name=secondaryInstruments]').val().split(','),
+                        skillLevel: $('[name=skillLevel]').val(),
+                        userRecording: userRecordingInput,
+                        groupsPurpose: $('[name=groupsPurpose]').val(),
+                        peopleWhoPlay: $('[name=peopleWhoPlay]').val().split(','),
+                        genres: $('[name=genres]').val().split(','),
+                        musicalInfluences: [$('[name=musicalInfluence1]').val(),$('[name=musicalInfluence2]').val(), $('[name=musicalInfluence3]').val()],
+                        favoriteSongs: [$('[name=favoriteSong1]').val(),$('[name=favoriteSong2]').val(), $('[name=favoriteSong3]').val()],
+                    };
+                    Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.userInfo": userInfo}}, function(err) {
+                        if (err) {
+                            alertify.alert('Profile Change Unsuccessful', "Sorry, something went wrong :(")
+                        } else {
+                            usersDB.upsert({
+                                _id: Meteor.user()._id
+                            }, {
+                                $set: {
+                                    bio: Meteor.user().profile.userInfo.bio,
+                                    userID: Meteor.user()._id,
+                                    firstName: Meteor.user().firstName, 
+                                    lastName: Meteor.user().lastName,
+                                    primaryInstrument: Meteor.user().profile.userInfo.primaryInstrument,
+                                    secondaryInstruments: Meteor.user().profile.userInfo.secondaryInstruments,
+                                    skillLevel: Meteor.user().profile.userInfo.skillLevel,
+                                    userRecording: Meteor.user().profile.userInfo.userRecording,
+                                    groupsPurpose: Meteor.user().profile.userInfo.groupsPurpose,
+                                    peopleWhoPlay: Meteor.user().profile.userInfo.peopleWhoPlay,
+                                    genres: Meteor.user().profile.userInfo.genres,
+                                    favoriteSongs: Meteor.user().profile.userInfo.favoriteSongs,
+                                    musicalInfluences: Meteor.user().profile.userInfo.musicalInfluences,
+                                }
+                            })
+                            alertify.alert('Yay!', 'Changes saved!', function() {
+                                Session.set("userRecording", Meteor.user().profile.userInfo.userRecording)
+                                $('.shape').shape('flip over')
+                            })
                         }
                     })
-                    alertify.alert('Yay!', 'Changes saved!', function() {
-                        Session.set("userRecording", Meteor.user().profile.userInfo.userRecording)
-                        $('.shape').shape('flip over')
-                    })
                 }
-            })
-        }
+            }
         },
         'keypress input': function(e) {
             Session.set('profileChangesSaved', false);
@@ -377,6 +384,12 @@ if (Meteor.isClient) {
     //         return S3.collection.find();
     //     }
     // });
+
+    Template.matches.helpers({
+        join: function(array) {
+            return array.join(', ')
+        },
+    })
 
     Template.imageUpload.events({
         'change input[type=file]': function(e, t) {
