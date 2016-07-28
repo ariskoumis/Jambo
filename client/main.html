@@ -56,7 +56,48 @@
 </template>
 
 <template name='inbox'>
-    <p>Dis empty rn</p>
+    <!-- <div class="ui divider"></div>
+    <div class="ui grid">
+        <div class="row">
+            <div class="five wide column"> 
+                <img class="ui circular image" src={{profilePicture}}>
+            </div>
+            <div class="six wide column">
+                <div class="content">
+                    <a class="header">Header</a>
+                    <div class="meta">
+                        <span>Description</span>
+                    </div>
+                    <div class="description">
+                        <p></p>
+                    </div>
+                    <div class="extra">
+                        Additional Details
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui divider"></div>
+    </div> -->
+    <div class="ui divided items">
+        <div class="item">
+            <div class="image">
+                <img src={{profilePicture}}>
+            </div>
+            <div class="content">
+                <a class="header">Header</a>
+                <div class="meta">
+                    <span>Description</span>
+                </div>
+                <div class="description">
+                    <p></p>
+                </div>
+                <div class="extra">
+                    Additional Details
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <template name="login">
@@ -485,18 +526,17 @@
                             <span>{{this.primaryInstrument}}</span>
                         </div>
                     </div>
-                    <div class="six wide column inlineButtons">
-                        <button class="green circular ui icon button">
+                    <div class="six wide column">
+                        <button id="userRecordingLink" class="ui fluid blue icon button">
+                            <i class="music icon"></i>
+                        </button>
+                    </div>
+                    <div class="six wide column right aligned inlineContent">
+                        <button id="acceptMatch" class="green circular ui icon button">
                             <i class="checkmark icon"></i>
                         </button>
                         <button class="red circular ui icon button">
                             <i class="remove icon "></i>
-                        </button>
-                    </div>
-                    <div class="six wide column">
-                        <button id="userRecordingLink" class="ui fluid blue icon button">
-                            <i class="music icon"></i>
-                            Recording
                         </button>
                     </div>
                 </div>

@@ -39,7 +39,6 @@ Meteor.startup(() => {
         region: "us-west-1",
         AWSAccessKeyId: keys.aws.key,
         AWSSecretAccessKey: keys.aws.secret,
-
         acl: "public-read",
 
         authorize: function () {

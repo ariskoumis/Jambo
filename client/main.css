@@ -52,10 +52,10 @@ html.ios, html.ios body{
 	max-height: 100%;
 }
 
-img#profilePicutre.ui.image {
+/*img#profilePicutre.ui.image {
 	height: 500px;
 	width: 500px;
-}
+}*/
 
 .topSpacing {
 	margin-top: 10px!important;
@@ -66,18 +66,19 @@ img#profilePicutre.ui.image {
 }
 
 .holder {
-  height: 500px
+  height: 500px;
 }
 .holder .middle {
   height: 100%
 }
 
-.inlineButtons {
+.inlineContent {
 	display: inline-block;
 }
 
 .noBottomMargin {
 	margin: 0px;
+	padding-bottom: 0px!important;
 }
 
 div.ui.fluid.content.card {
@@ -87,4 +88,3 @@ div.ui.fluid.content.card {
 div.ui.top.menu {
 	margin-bottom: 0px;
 }
-

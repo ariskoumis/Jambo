@@ -19,6 +19,13 @@ if (Meteor.isClient) {
         maxSize: 10 * 1024 * 1024 // 10 MB (use null for unlimited)
     });
 
+    //Global Helpers
+    Template.registerHelper( 'profilePicture', () => {
+        if (typeof Meteor.user().profile.profilePicture != "undefined") {
+            return Meteor.user().profile.profilePicture;
+        } //else default ya kno
+    });
+
     //Main Template
     Template.main.events({
         "click #sideMenu": function() {
@@ -166,13 +173,6 @@ if (Meteor.isClient) {
                 return 'Nothing here yet :(';
             }
         },
-        'profilePicture': function() {
-            if (typeof Meteor.user().profile.profilePicture != "undefined") {
-                return Meteor.user().profile.profilePicture;
-            } else {
-                return "https://jamboapp.s3-us-west-1.amazonaws.com/1469209013570_blank-profile-picture-973460_1280-1.png";
-            }
-        },
         skillLevel: function() {
             if (typeof Meteor.user().profile != "undefined") {
                 return Meteor.user().profile.userInfo.skillLevel;
@@ -244,18 +244,7 @@ if (Meteor.isClient) {
         'click #editProfileSubmit': function() {
             //formatting url of user recording
             rawUserRecording = $('[name=userRecording]').val();
-            let userRecordingInput;
-            if (rawUserRecording == "") {
-                userRecordingInput = "";
-            } else if (rawUserRecording.split('')[0] != 'h' && rawUserRecording.split('')[1] != 't' && rawUserRecording.split('')[2] != 't' && rawUserRecording.split('')[3] != 'p') {
-                if (rawUserRecording.split('')[0] != 'w' && rawUserRecording.split('')[1] != 'w' && rawUserRecording.split('')[2] != 'w') {
-                    userRecordingInput = 'http://www.' + rawUserRecording;
-                } else {
-                    userRecordingInput = 'http://' + rawUserRecording;
-                }
-            } else {
-                userRecordingInput = rawUserRecording
-            }
+            userRecordingInput = encodeURI(rawUserRecording)
             //reinventing the wheel here
             if ($('[name=bio]').val()=="" || $('[name=primaryInstrument]').val()=="" || $('[name=secondaryInstruments]').val()=="" || $('[name=skillLevel]').val()==""|| userRecordingInput == "" || $('[name=groupsPurpose]').val()=="" || $('[name=peopleWhoPlay]').val().split(',')=="" || $('[name=genres]').val()=="" || $('[name=musicalInfluence1]').val()=="" || $('[name=musicalInfluence2]').val()=="" || $('[name=musicalInfluence3]').val()=="" || $('[name=favoriteSong1]').val()=="" || $('[name=favoriteSong2]').val()=="" || $('[name=favoriteSong3]').val=="") {
                 alertify.alert("Error", "Please fill all fields.")
@@ -357,6 +346,15 @@ if (Meteor.isClient) {
             })
             matchArray.shift()
             return matchArray
+        }
+    });
+
+    Template.inbox.helpers({
+    })
+
+    Template.matches.events({
+        'click #acceptMatch': function() {
+            FlowRouter.go('/inbox');
         }
     })
 
