@@ -4,6 +4,7 @@ var keys = require('/keys.js');
 
 Meteor.startup(() => {
     // code to run on server at startup
+    conversations = new Mongo.Collection('conversations');
     usersDB = new Mongo.Collection('usersDB');
 
     // S3.config = {

@@ -5,6 +5,7 @@ import { Session } from 'meteor/session';
 import './main.html';
 
 usersDB = new Mongo.Collection('usersDB');
+conversations = new Mongo.Collection('conversations');
 
 String.prototype.capitalizeFirstLetter = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
@@ -30,17 +31,48 @@ if (Meteor.isClient) {
     Template.main.events({
         "click #sideMenu": function() {
             $(".ui.sidebar").sidebar('show')
-        },
-        "click #cameraButton": function() {
-            MeteorCameraUI.getPicture();
+            console.log(conversations.find({members: {$elemMatch: {id:Meteor.user()._id}}}).fetch())
         },
         "click #logoutButton": function() {
             Meteor.logout();
         },
-        "click #alertTest": function() {
-            alertify.alert('<a href="javascript:showConfirm();">Show Confirm</a>');
-        }    
+        "click #newMessage": function() {
+            let otherUser = usersDB.find({_id:"XwGLBQSFABeW5Gf7Y"}).fetch();
+            conversations.insert({
+                members: [
+                    {
+                        firstName: Meteor.user().firstName,
+                        lastName: Meteor.user().lastName,
+                        id: Meteor.user()._id,
+                    },
+                    {
+                        firstName: otherUser.firstName,
+                        lastName: otherUser.lastName,
+                        id: otherUser._id,
+                    }
+                ],
+                messages: [
+                    {
+                        from: Meteor.user()._id,
+                        message: "hey hey hey!!",
+                        sent: moment().format(),
+                    }, 
+                    {
+                        from: otherUser._id,
+                        message: "hey dude!!!",
+                        sent: moment().format(),
+                    }
+                ]
+            })
+        }
     });
+
+    Template.main.helpers({
+        messages: function() {
+            console.log(conversations.find({members: {$elemMatch: {id:Meteor.user()._id}}}).fetch())
+            return conversations.find({members: {$elemMatch: {id:Meteor.user()._id}}}).fetch()
+        }
+    })
 
     Template.menu.events({
         "click #menu": function() {
@@ -322,8 +354,8 @@ if (Meteor.isClient) {
                 usersDB.find().fetch()
             } else {
                 for (var i=0; i<Meteor.user().profile.userInfo.peopleWhoPlay.length; i++) {
-                initialMatchArray = initialMatchArray.concat(usersDB.find({primaryInstrument:Meteor.user().profile.userInfo.peopleWhoPlay[i]}).fetch());
-                initialMatchArray = initialMatchArray.concat(usersDB.find({secondaryInstruments:Meteor.user().profile.userInfo.peopleWhoPlay[i]}).fetch());
+                    initialMatchArray = initialMatchArray.concat(usersDB.find({primaryInstrument:Meteor.user().profile.userInfo.peopleWhoPlay[i]}).fetch());
+                    initialMatchArray = initialMatchArray.concat(usersDB.find({secondaryInstruments:Meteor.user().profile.userInfo.peopleWhoPlay[i]}).fetch());
                 }
             }
             //Search by Secondary Instrument
