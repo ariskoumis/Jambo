@@ -21,8 +21,6 @@
 <template name="home">
     <button class="fluid ui button" id="logoutButton">Logout</button>
     <button class="fluid ui button" id="newMessage">New Message</button>
-
-    {{messages}}
 </template>
 
 <template name="menu">
@@ -61,13 +59,14 @@
 <template name='inbox'>
     <div class="ui divider"></div>
     <div class="ui grid">
-        <div class="row">
+    {{#each messages}}
+        <div class="row noPadding">
             <div class="five wide column"> 
-                <img class="ui circular image" src={{profilePicture}}>
+                <img class="ui circular image" src={{otherUserPicture this.members}}>
             </div>
             <div class="six wide column">
                 <div class="content">
-                    <a class="header">Header</a>
+                    <a class="header">{{fullName this.members}}</a>
                     <div class="meta">
                         <span>Description</span>
                     </div>
@@ -81,26 +80,8 @@
             </div>
         </div>
         <div class="ui divider"></div>
+    {{/each}}
     </div>
-    <!-- <div class="ui divided items">
-        <div class="item">
-            <div class="image">
-                <img src={{profilePicture}}>
-            </div>
-            <div class="content">
-                <a class="header">Header</a>
-                <div class="meta">
-                    <span>Description</span>
-                </div>
-                <div class="description">
-                    <p></p>
-                </div>
-                <div class="extra">
-                    Additional Details
-                </div>
-            </div>
-        </div>
-    </div> -->
 </template>
 
 <template name="login">

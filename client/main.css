@@ -88,3 +88,11 @@ div.ui.fluid.content.card {
 div.ui.top.menu {
 	margin-bottom: 0px;
 }
+
+.noPadding {
+	padding: 0px!important;
+}
+
+.ui.divider {
+	margin-bottom: 25px;
+}

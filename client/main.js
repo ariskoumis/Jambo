@@ -31,23 +31,24 @@ if (Meteor.isClient) {
     Template.main.events({
         "click #sideMenu": function() {
             $(".ui.sidebar").sidebar('show')
-            console.log(conversations.find({members: {$elemMatch: {id:Meteor.user()._id}}}).fetch())
         },
         "click #logoutButton": function() {
             Meteor.logout();
         },
         "click #newMessage": function() {
-            let otherUser = usersDB.find({_id:"XwGLBQSFABeW5Gf7Y"}).fetch();
+            let otherUser = usersDB.find({_id:"XwGLBQSFABeW5Gf7Y"}).fetch()[0];
             conversations.insert({
                 members: [
                     {
                         firstName: Meteor.user().firstName,
                         lastName: Meteor.user().lastName,
+                        profilePicture: Meteor.user().profilePicture,
                         id: Meteor.user()._id,
                     },
                     {
                         firstName: otherUser.firstName,
                         lastName: otherUser.lastName,
+                        profilePicture: otherUser.profilePicture,
                         id: otherUser._id,
                     }
                 ],
@@ -66,13 +67,6 @@ if (Meteor.isClient) {
             })
         }
     });
-
-    Template.main.helpers({
-        messages: function() {
-            console.log(conversations.find({members: {$elemMatch: {id:Meteor.user()._id}}}).fetch())
-            return conversations.find({members: {$elemMatch: {id:Meteor.user()._id}}}).fetch()
-        }
-    })
 
     Template.menu.events({
         "click #menu": function() {
@@ -382,56 +376,36 @@ if (Meteor.isClient) {
     });
 
     Template.inbox.helpers({
-    })
+        messages: function() {
+            return conversations.find({members: {$elemMatch: {id:Meteor.user()._id}}}).fetch()
+        },
+        fullName: function(array) {
+            if (array[0].id != Meteor.user()._id) {
+                return array[0].firstName + " " + array[0].lastName;
+            } else {
+                return array[1].firstName + " " + array[1].lastName;
+            }
+        },
+        otherUserPicture: function(array, parent) {
+            if (array[0].id != Meteor.user()._id) {
+                return array[0].profilePicture;
+            } else {
+                return array[1].profilePicture;
+            }
+        }
+    });
 
     Template.matches.events({
         'click #acceptMatch': function() {
             FlowRouter.go('/inbox');
         }
-    })
+    });
 
     Template.modalContent.helpers({
         'userFirst': function() {
             return Meteor.user().firstName;
         }
     });
-
-    // Template.s3_tester.onRendered(function() {
-    //     $("#profilePictureUpload").hide();
-    //     $("#pictureUploadLoader").hide();
-    //     $("#checkSuccess").hide();
-    // });
-
-    // Template.s3_tester.events({
-    //     //Styling of default upload input is ugly, using own button to click the file selector button
-    //     "click #uploadProxy": function() {
-    //         $("#profilePictureUpload").click();
-    //     },
-    //     //As soon as an image is selected, it is uploaded to database.
-    //     'change input[type=file]': function (e, tmpl) {
-    //         var files = $("input.file_bag")[0].files
-    //         $("#uploadProxy").hide();
-    //         $("#pictureUploadLoader").show()
-    //         S3.upload({
-    //                 files:files,
-    //                 path:"profilePictures"
-    //             },function(e,r){
-    //                 if (r) {
-    //                     Meteor.users.update({_id:Meteor.user()._id}, {$set: {"profile.userInfo.profilePicture":r.url}});
-    //                     console.log(r)
-    //                     $("#pictureUploadLoader").hide()
-    //                     $("#checkSuccess").show()
-    //                     $("#checkSuccess").transition('tada')
-    //                 }
-    //         });
-    //     }
-    // });
-
-    // Template.s3_tester.helpers({
-    //     "files": function(){
-    //         return S3.collection.find();
-    //     }
-    // });
 
     Template.matches.helpers({
         join: function(array) {
