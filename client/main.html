@@ -59,28 +59,22 @@
 <template name='inbox'>
     <div class="ui divider"></div>
     <div class="ui grid">
-    {{#each messages}}
-        <div class="row noPadding">
-            <div class="five wide column"> 
-                <img class="ui circular image" src={{otherUserPicture this.members}}>
-            </div>
-            <div class="six wide column">
-                <div class="content">
-                    <a class="header">{{fullName this.members}}</a>
-                    <div class="meta">
-                        <span>Description</span>
-                    </div>
-                    <div class="description">
-                        <p></p>
-                    </div>
-                    <div class="extra">
-                        Additional Details
+        {{#each messages}}
+            <div id="messageRow" class="row noPadding">
+                <div class="five wide column"> 
+                    <img class="ui circular image" src={{otherUserPicture this.members}}>
+                </div>
+                <div class="six wide column">
+                    <div class="content">
+                        <a class="header">{{fullName this.members}}</a>
+                        <div class="meta">
+                            <span>{{recentMessage this.messages}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="ui divider"></div>
-    {{/each}}
+            <div class="ui divider"></div>
+        {{/each}}
     </div>
 </template>
 

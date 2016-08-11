@@ -375,6 +375,12 @@ if (Meteor.isClient) {
         }
     });
 
+    Template.inbox.events({
+        "click #messageRow": function(hey) {
+            console.log(hey)
+        }
+    })
+
     Template.inbox.helpers({
         messages: function() {
             return conversations.find({members: {$elemMatch: {id:Meteor.user()._id}}}).fetch()
@@ -392,6 +398,9 @@ if (Meteor.isClient) {
             } else {
                 return array[1].profilePicture;
             }
+        },
+        recentMessage: function(messages) {
+            return messages[messages.length-1].message;
         }
     });
 
