@@ -376,8 +376,7 @@ if (Meteor.isClient) {
     });
 
     Template.inbox.events({
-        "click #messageRow": function(hey) {
-            console.log(hey)
+        "click #messageRow": function() {
         }
     })
 
@@ -401,6 +400,21 @@ if (Meteor.isClient) {
         },
         recentMessage: function(messages) {
             return messages[messages.length-1].message;
+        },
+        conversation: function(messageArray) {
+            var swapped;
+                do {
+                    swapped = false;
+                    for (var i=0; i < messageArray.length-1; i++) {
+                        if (moment(messageArray[i].sent).isBefore(moment(messageArray[i+1].sent))) {
+                            var temp = messageArray[i];
+                            messageArray[i] = messageArray[i+1];
+                            messageArray[i+1] = temp;
+                            swapped = true;
+                        }
+                    }
+                } while (swapped);
+            return messageArray
         }
     });
 
